@@ -1,0 +1,18 @@
+.mainBackground {
+    background-color: #F6F7F8;
+}
+.mainBackground {
+    background: linear-gradient(180deg, #5E50A1 40%, #F6F7F8 40%);
+}
+  .flexBox {
+    width: 100px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #FDD074;
+    border: 1px solid #FBB017;
+    margin-right: 10px;
+    font-weight: 500;
+}

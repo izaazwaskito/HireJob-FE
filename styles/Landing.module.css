@@ -1,0 +1,41 @@
+.landingHeight{
+    height: 80vh;
+}
+.ul{
+    list-style-image: url("../public/tick 1.png");   
+    margin: auto;
+} 
+.marFlex{
+    margin: auto;
+    margin-left: 250px;  
+}
+
+.bfooterl{
+    margin: auto;
+    padding-left: 100px;
+}
+
+.bfooterr{
+    margin: auto;
+    padding-left: 550px;
+}
+  
+@media only screen and (max-width: 768px) {
+    
+    .landingHeight{
+        height: 90vh;
+    }
+    .marFlex{
+        margin: auto;
+        
+    }
+    .bfooterl{
+        margin: auto;
+        padding-left: 0;
+    }
+    
+    .bfooterr{
+        margin: auto;
+        padding-left: 0;
+    }
+  }
