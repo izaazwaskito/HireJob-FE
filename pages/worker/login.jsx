@@ -1,11 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import authphoto from "../../public/authphoto.jpg";
 import logo from "../../public/PeworldPutih.png";
 import "../../styles/Home.module.css";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const login = () => {
+  const router = useRouter();
+  const [data, setData] = useState({
+    wrk_email: "",
+    wrk_confirmpassword: "",
+  });
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:7474/worker/login`, data)
+      .then((res) => {
+        console.log(res.data.message);
+        if (res.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: "Login successfully",
+          }).then((result) => {
+            router.push("/landingpage");
+          });
+        } else if (res.status === 200) {
+          Toast.fire({
+            icon: "error",
+            title: res.data.message,
+          }).then((result) => {
+            router.push("/worker/login");
+          });
+        }
+        localStorage.setItem("token_user", res.data.data.token_user);
+        localStorage.setItem("wrk_id", res.data.data.wrk_id);
+        navigate("/");
+      })
+      .catch((err) => {});
+  };
+
   return (
     <div className="container" style={{ maxWidth: 1766 }}>
       <Head>
@@ -68,50 +124,60 @@ const login = () => {
                 euismod ipsum et dui rhoncus auctor.
               </h5>
             </div>
-            <div>
-              <p className="mb-0" style={{ color: "#9EA0A5", fontSize: 14 }}>
-                Email
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan alamat email"
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                Kata Sandi
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan kata sandi"
-                style={{ height: 50 }}
-              />
-            </div>
-            <div className="mt-3">
-              <p className="text-end">Lupa kata sandi?</p>
-            </div>
-            <div>
-              <button
-                className="container-fluid mt-3"
-                style={{
-                  backgroundColor: "#FBB017",
-                  color: "white",
-                  borderRadius: 4,
-                  height: 50,
-                  border: 0,
-                }}
-              >
-                Masuk
-              </button>
-            </div>
+            <form onSubmit={handleLogin}>
+              <div>
+                <p className="mb-0" style={{ color: "#9EA0A5", fontSize: 14 }}>
+                  Email
+                </p>
+                <input
+                  type="text"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan alamat email"
+                  style={{ height: 50 }}
+                  name="wrk_email"
+                  value={data.wrk_email}
+                  onChange={handleChange}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  Kata Sandi
+                </p>
+                <input
+                  type="password"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan kata sandi"
+                  name="wrk_confirmpassword"
+                  value={data.wrk_confirmpassword}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+              </div>
+
+              <div className="mt-3">
+                <p className="text-end">Lupa kata sandi?</p>
+              </div>
+              <div>
+                <button
+                  className="container-fluid mt-3"
+                  type="submit"
+                  style={{
+                    backgroundColor: "#FBB017",
+                    color: "white",
+                    borderRadius: 4,
+                    height: 50,
+                    border: 0,
+                  }}
+                >
+                  Masuk
+                </button>
+              </div>
+            </form>
             <div className="mt-3">
               <p className="text-center">
                 Anda belum punya akun? Daftar disini

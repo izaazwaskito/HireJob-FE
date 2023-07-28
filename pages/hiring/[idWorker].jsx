@@ -15,14 +15,17 @@ const Index = () => {
       <header>
         <Navbar />
       </header>
-      <main className={styles.mainBackground}>
-        <div className="container" style={{ height: "120vh", maxWidth: 1650 }}>
+      <main className={styles.mainBackgroundSecond}>
+        <div
+          className={`container ${styles.sideProfile}`}
+          style={{ maxWidth: 1650 }}
+        >
           <div className="row">
             <div className="col-md-3 ">
               <div
                 className="col-md-12 mt-5 container"
                 style={{
-                  height: "110vh",
+                  height: "100vh",
                   backgroundColor: "#FFF",
                   borderRadius: "8px",
                 }}
@@ -96,35 +99,126 @@ const Index = () => {
                 </div>
                 <div className="col-md-12 mt-4 ">
                   <div className="row">
-                    <div className="col-md-1 mb-3 text-start">
+                    <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={mail} />
                     </div>
-                    <div className="col-md-11 " style={{ color: "#9EA0A5" }}>
+                    <div
+                      className="col-md-11 col-11 "
+                      style={{ color: "#9EA0A5" }}
+                    >
                       Louistommo@gmail.com
                     </div>
-                    <div className="col-md-1 mb-3 text-start">
+                    <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={instragram} />
                     </div>
-                    <div className="col-md-11 " style={{ color: "#9EA0A5" }}>
+                    <div
+                      className="col-md-11 col-11 "
+                      style={{ color: "#9EA0A5" }}
+                    >
                       @Louist91
                     </div>
-                    <div className="col-md-1 mb-3 text-start">
+                    <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={github} />
                     </div>
-                    <div className="col-md-11 " style={{ color: "#9EA0A5" }}>
+                    <div
+                      className="col-md-11 col-11 "
+                      style={{ color: "#9EA0A5" }}
+                    >
                       @Louistommo
                     </div>
-                    <div className="col-md-1 mb-3 text-start">
+                    <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={gitlab} />
                     </div>
-                    <div className="col-md-11 " style={{ color: "#9EA0A5" }}>
+                    <div
+                      className="col-md-11 col-11 "
+                      style={{ color: "#9EA0A5" }}
+                    >
                       @Louistommo91
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-9 ">ea</div>
+            <div className="col-md-9 ">
+              <div
+                className="col-md-12 mt-5 container"
+                style={{
+                  backgroundColor: "#FFF",
+                  borderRadius: "8px",
+                }}
+              >
+                <div className="col-md-12 m-1 ">
+                  <ul className="nav nav-underline">
+                    <li className="nav-item">
+                      <p
+                        className="nav-link active"
+                        aria-current="page"
+                        href="#"
+                        style={{ fontSize: "22px" }}
+                      >
+                        Portofolio
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+                <div className="col-md-12">
+                  <div className="row d-flex justify-content-between m-1">
+                    <div
+                      className="card p-0"
+                      style={{ width: "18rem", border: "none" }}
+                    >
+                      <Image
+                        src={profile}
+                        className="card-img-top"
+                        height={200}
+                        style={{ objectFit: "cover", borderRadius: "4px" }}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title text-center">Reminder</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-12 m-1 ">
+                  <ul className="nav nav-underline">
+                    <li className="nav-item">
+                      <p
+                        className="nav-link active"
+                        aria-current="page"
+                        href="#"
+                        style={{ fontSize: "22px" }}
+                      >
+                        Pengalaman Kerja
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+                <div className="col-md-12 border-bottom mb-4">
+                  <p className="m-0 fw-semibold fs-5">Engineer</p>
+                  <p className="m-0">Tokopedia</p>
+                  <p className="m-0" style={{ color: "#9EA0A5" }}>
+                    July 2019 - January 2020 6 months
+                  </p>
+                  <p className="mt-1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
+                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
+                  </p>
+                </div>
+                <div className="col-md-12 border-bottom mb-4">
+                  <p className="m-0 fw-semibold fs-5">Engineer</p>
+                  <p className="m-0">Tokopedia</p>
+                  <p className="m-0" style={{ color: "#9EA0A5" }}>
+                    July 2019 - January 2020 6 months
+                  </p>
+                  <p className="mt-1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
+                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

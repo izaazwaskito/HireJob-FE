@@ -22,15 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/hiring": [
+    "/editworker/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/hiring.js"
-    ],
-    "/hiring/[idWorker]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/hiring/[idWorker].js"
+      "static/chunks/pages/editworker/[id].js"
     ]
   },
   "ampFirstPages": []

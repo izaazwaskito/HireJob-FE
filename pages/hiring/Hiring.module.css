@@ -1,8 +1,11 @@
 .mainBackground {
     background-color: #F6F7F8;
 }
-.mainBackground {
+.mainBackgroundSecond {
     background: linear-gradient(180deg, #5E50A1 40%, #F6F7F8 40%);
+}
+.mainBackgroundSecondEdit {
+    background: linear-gradient(180deg, #5E50A1 14%, #F6F7F8 14%);
 }
   .flexBox {
     width: 100px;
@@ -16,3 +19,36 @@
     margin-right: 10px;
     font-weight: 500;
 }
+.sideProfile{
+    height: 120vh;
+}
+.sideProfileEdit{
+    height: 280vh;
+}
+.hightPK{
+    
+}
+.hightPF{
+    height: 75vh;
+}
+.dataHeight{
+    height: 68vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .sideProfile{
+        height: fit-content;
+    }
+    .sideProfileEdit{
+        height: max-content;
+    }
+    .hightPK{
+        
+    }
+    .hightPF{
+        height: 100vh;
+    }
+    .dataHeight{
+        height: 78vh;
+    }
+  }

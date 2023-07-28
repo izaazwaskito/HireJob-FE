@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Izaaz Waskito Widyarto",
+      "email": "izaaz.waskito@gmail.com",
+      "phone": "081225169016",
+      "password": "123",
+      "confirmpassword": "123"
+    },
+    {
+      "name": "Brigita Liliana Herawati",
+      "email": "brigita.liliana@gmail.com",
+      "phone": "081225169016",
+      "password": "123",
+      "confirmpassword": "123",
+      "id": 2
+    },
+    {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "password": "",
+      "confirmpassword": "",
+      "id": 3
+    },
+    {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "password": "",
+      "confirmpassword": "",
+      "id": 4
+    }
+  ]
+}

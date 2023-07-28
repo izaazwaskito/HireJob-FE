@@ -1,9 +1,7 @@
 import React from "react";
 import logo from "../../public/PeworldPurple.png";
-import mail from "../../public/mail.svg";
-import bell from "../../public/bell.svg";
-import profile from "../../public/profile.jpg";
 import Image from "next/image";
+import Link from "next/link";
 
 const NavbarLogin = () => {
   return (
@@ -26,25 +24,29 @@ const NavbarLogin = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <Link href={"/worker/login"}>
+              <button
+                className="btn fw-semibold"
+                style={{
+                  border: "1px solid #5E50A1",
+                  color: "#5E50A1",
+                  marginRight: 16,
+                  height: "44px",
+                }}
+              >
+                Masuk Untuk Pekerja
+              </button>
+            </Link>
             <button
-              className="btn"
-              style={{
-                border: "1px solid #5E50A1",
-                color: "#5E50A1",
-                marginRight: 16,
-              }}
-            >
-              Masuk
-            </button>
-            <button
-              className="btn"
+              className="btn fw-semibold"
               style={{
                 border: "1px solid #5E50A1",
                 color: "#FFF",
                 backgroundColor: "#5E50A1",
+                height: "44px",
               }}
             >
-              Daftar
+              Masuk Untuk Perekrut
             </button>
           </div>
         </div>
