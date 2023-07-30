@@ -2,13 +2,13 @@
     background-color: #F6F7F8;
 }
 .mainBackgroundSecond {
-    background: linear-gradient(180deg, #5E50A1 40%, #F6F7F8 40%);
+    background: linear-gradient(180deg, #5E50A1 33%, #F6F7F8 33%);
 }
 .mainBackgroundSecondEdit {
     background: linear-gradient(180deg, #5E50A1 14%, #F6F7F8 14%);
 }
   .flexBox {
-    width: 100px;
+    width: fit-content;
     height: 40px;
     color: rgb(255, 255, 255);
     text-align: center;

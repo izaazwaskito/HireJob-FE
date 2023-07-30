@@ -7,6 +7,7 @@ import "../../styles/Home.module.css";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Link from "next/link";
 
 const login = () => {
   const router = useRouter();
@@ -158,10 +159,13 @@ const login = () => {
                   style={{ height: 50 }}
                 />
               </div>
-
-              <div className="mt-3">
-                <p className="text-end">Lupa kata sandi?</p>
-              </div>
+              <Link href={"/forgetpassword"}>
+                <div className="mt-3">
+                  <p className="text-end" style={{ color: "black" }}>
+                    Lupa kata sandi?
+                  </p>
+                </div>
+              </Link>
               <div>
                 <button
                   className="container-fluid mt-3"
@@ -180,7 +184,12 @@ const login = () => {
             </form>
             <div className="mt-3">
               <p className="text-center">
-                Anda belum punya akun? Daftar disini
+                Anda belum punya akun?{" "}
+                <Link href={"/worker/register"}>
+                  <span style={{ color: "#FBB017", display: "inline-block" }}>
+                    Daftar disini
+                  </span>
+                </Link>
               </p>
             </div>
           </div>

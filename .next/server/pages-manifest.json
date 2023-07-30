@@ -2,5 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/editworker/[id]": "pages/editworker/[id].js"
+  "/hiring": "pages/hiring.js",
+  "/editworker/[id]": "pages/editworker/[id].js",
+  "/worker/login": "pages/worker/login.js",
+  "/landingpage": "pages/landingpage.js"
 }

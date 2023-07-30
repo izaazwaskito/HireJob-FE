@@ -5,22 +5,26 @@ import bell from "../../public/bell.svg";
 import profile from "../../public/profile.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const [login, setLogin] = useState();
+
   useEffect(() => {
     // Perform localStorage action
     const isLogin = localStorage.getItem("wrk_id");
     setLogin(isLogin);
   }, []);
+
   return (
     <>
       {" "}
       <nav className="navbar navbar-expand-lg bg-white sticky-top">
         <div className="container" style={{ maxWidth: 1650 }}>
-          <a className="navbar-brand" href="#">
+          <Link href={`/landingpage`}>
             <Image src={logo} height={35} />
-          </a>
+          </Link>
 
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <div className="ms-md-5 ms-4">
@@ -29,16 +33,58 @@ const Navbar = () => {
           <div className="ms-md-5 ms-4">
             <Image src={mail} />
           </div>
-          <Link href={`/editworker/${login}`}>
+          {/* <Link href={`/editworker/${login}`}>
             <div className="ms-md-5 ms-4">
-              {" "}
               <Image
                 src={profile}
                 height={32}
                 style={{ borderRadius: "50%" }}
               />
             </div>
-          </Link>
+          </Link> */}
+          <div className="btn-group">
+            <div
+              className="ms-md-5 ms-4"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+            >
+              <Image
+                src={profile}
+                height={32}
+                style={{ borderRadius: "50%" }}
+              />
+            </div>
+
+            <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+              <li>
+                <Link href={`/editworker/${login}`}>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    style={{ display: "inline-block" }}
+                  >
+                    Profile
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={(e) => {
+                    localStorage.clear();
+                    router.push("/landingpage");
+                    setTimeout(function () {
+                      window.location.reload();
+                    }, 1000);
+                  }}
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </>

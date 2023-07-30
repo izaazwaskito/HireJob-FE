@@ -26,6 +26,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/editworker/[id].js"
+    ],
+    "/hiring": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/hiring.js"
+    ],
+    "/landingpage": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/landingpage.js"
     ]
   },
   "ampFirstPages": []

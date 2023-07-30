@@ -43,3 +43,18 @@ export const editExperience = (exp_id, data, setShow) => async (dispatch) => {
     console.log(err.message);
   }
 };
+
+export const deleteExperience = (exp_id, setShow) => async (dispatch) => {
+  try {
+    const experiences = await axios.delete(
+      `http://localhost:7474/experience/${exp_id}`
+    );
+    const result = experiences.data.data;
+    console.log(result);
+    setShow(false);
+    dispatch({ type: "DELETE_EXPERIENCE", payload: result });
+    window.location.reload();
+  } catch (err) {
+    console.log(err.message);
+  }
+};

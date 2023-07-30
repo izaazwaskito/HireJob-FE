@@ -3,6 +3,8 @@ import imagelist from "../public/Group 1195.png";
 import imagelist2 from "../public/Group 1194.png";
 import imagelist3 from "../public/Group 1196.png";
 import profilpic1 from "../public/profilpic1.png";
+import tick1 from "../public/tick 1.png";
+import tick13 from "../public/tick 13.svg";
 import Image from "next/image";
 import styles from "../styles/Landing.module.css";
 import NavbarLogin from "../components/Navbar/NavbarLogin";
@@ -96,15 +98,38 @@ const landingpage = () => {
                         Kenapa harus mencari tallent <br />
                         di peworld
                       </h2>
-                      <ul
-                        className={styles.ul}
-                        style={{ lineHeight: 3, paddingLeft: 30 }}
-                      >
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                      </ul>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -130,25 +155,73 @@ const landingpage = () => {
                       </p>
                       <div className="row">
                         <div className="col-md-6 col-6">
-                          <ul
-                            className={styles.ul}
-                            style={{ lineHeight: 3, paddingLeft: 30 }}
-                          >
-                            <li>Java</li>
-                            <li>Kotlin</li>
-                            <li>PHP</li>
-                            <li>JavaScript</li>
-                          </ul>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Java</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Kotlin</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>PHP</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>JavaScript</p>
+                            </div>
+                          </div>
                         </div>
                         <div className="col-md-6 col-6">
-                          <ul className={styles.ul} style={{ lineHeight: 3 }}>
-                            <li>Golang</li>
-                            <li>C++</li>
-                            <li>Ruby</li>
-                            <li>10+ Bahasa lainnya</li>
-                          </ul>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Golang</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>C++</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Ruby</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>10+ Bahasa lainnya</p>
+                            </div>
+                          </div>
                         </div>
-                        <div className="col-md-6"></div>
                       </div>
                     </div>
                   </div>
@@ -430,15 +503,38 @@ const landingpage = () => {
                         Kenapa harus mencari tallent <br />
                         di peworld
                       </h2>
-                      <ul
-                        className={styles.ul}
-                        style={{ lineHeight: 3, paddingLeft: 30 }}
-                      >
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                      </ul>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>1rem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-1 col-1 pe-0">
+                          <Image src={tick1} />
+                        </div>
+                        <div className="col-md-11 col-11 ">
+                          <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -464,25 +560,73 @@ const landingpage = () => {
                       </p>
                       <div className="row">
                         <div className="col-md-6 col-6">
-                          <ul
-                            className={styles.ul}
-                            style={{ lineHeight: 3, paddingLeft: 30 }}
-                          >
-                            <li>Java</li>
-                            <li>Kotlin</li>
-                            <li>PHP</li>
-                            <li>JavaScript</li>
-                          </ul>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Java</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Kotlin</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>PHP</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>JavaScript</p>
+                            </div>
+                          </div>
                         </div>
                         <div className="col-md-6 col-6">
-                          <ul className={styles.ul} style={{ lineHeight: 3 }}>
-                            <li>Golang</li>
-                            <li>C++</li>
-                            <li>Ruby</li>
-                            <li>10+ Bahasa lainnya</li>
-                          </ul>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Golang</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>C++</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>Ruby</p>
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-1 col-2 pe-0">
+                              <Image src={tick13} />
+                            </div>
+                            <div className="col-md-11 col-10 ">
+                              <p>10+ Bahasa lainnya</p>
+                            </div>
+                          </div>
                         </div>
-                        <div className="col-md-6"></div>
                       </div>
                     </div>
                   </div>

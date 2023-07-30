@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import profile from "../../public/profile.jpg";
 import mail from "../../public/mail.svg";
@@ -8,8 +8,56 @@ import gitlab from "../../public/gitlab.svg";
 import styles from "./Hiring.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import noimage from "../../public/noimage.png";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getPortofolioUser } from "../../configs/redux/actions/portofolioAction";
+import { getExperienceUser } from "../../configs/redux/actions/experienceAction";
+import { getSkillUser } from "../../configs/redux/actions/skillActions";
+import Link from "next/link";
 
 const Index = () => {
+  const router = useRouter();
+  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const { portofolioUser } = useSelector((state) => state.portofolio);
+  const { experienceUser } = useSelector((state) => state.experience);
+  const { skillUser } = useSelector((state) => state.skill);
+
+  useEffect(() => {
+    if (router.isReady) {
+      axios
+        .get(`http://localhost:7474/worker/profile/${router.query.id}`)
+        .then((response) => {
+          setUsers(response.data.data[0]);
+        })
+        .catch((error) => console.log(error));
+      console.log(router.query);
+    }
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const isLogin = router.query.id;
+      dispatch(getPortofolioUser(isLogin));
+    }
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const isLogin = router.query.id;
+      dispatch(getExperienceUser(isLogin));
+    }
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const isLogin = router.query.id;
+      dispatch(getSkillUser(isLogin));
+    }
+  }, [router.isReady]);
+
   return (
     <>
       <header>
@@ -25,7 +73,6 @@ const Index = () => {
               <div
                 className="col-md-12 mt-5 container"
                 style={{
-                  height: "100vh",
                   backgroundColor: "#FFF",
                   borderRadius: "8px",
                 }}
@@ -45,56 +92,46 @@ const Index = () => {
                 </div>
                 <div className="col-md-12 mt-4">
                   <p className="fw-semibold mb-1" style={{ fontSize: "22px" }}>
-                    Louis Tomlinson
+                    {users.wrk_name}
                   </p>
-                  <p className="mb-2" style={{ fontSize: "14px" }}>
-                    Web Developer
-                  </p>
-                  <p
-                    className="mb-2"
-                    style={{ fontSize: "14px", color: "#9EA0A5" }}
-                  >
-                    Purwokerto, Jawa Tengah
+                  <p className="mb-2" style={{ fontSize: "17px" }}>
+                    {users.wrk_jobdesk}
                   </p>
                   <p
                     className="mb-2"
                     style={{ fontSize: "14px", color: "#9EA0A5" }}
                   >
-                    Freelancer
+                    {users.wrk_dom}
                   </p>
                   <p style={{ fontSize: "14px", color: "#9EA0A5" }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
-                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
+                    {users.wrk_desc}
                   </p>
                   <div className="col-md-12 mt-5 ">
-                    <button
-                      className="btn container-fluid fw-semibold"
-                      style={{
-                        border: "1px solid #5E50A1",
-                        color: "#FFF",
-                        height: "50px",
-                        backgroundColor: "#5E50A1",
-                        borderRadius: "4px",
-                        margin: "auto",
-                      }}
-                    >
-                      Hire
-                    </button>
+                    <Link href={`/hire/${router.query.id}`}>
+                      <button
+                        className="btn container-fluid fw-semibold"
+                        style={{
+                          border: "1px solid #5E50A1",
+                          color: "#FFF",
+                          height: "50px",
+                          backgroundColor: "#5E50A1",
+                          borderRadius: "4px",
+                          margin: "auto",
+                        }}
+                      >
+                        Hire
+                      </button>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-md-12 mt-4">
                   <h4>Skill</h4>
                   <div className="d-flex flex-wrap justify-content-between ">
-                    <div className={`${styles.flexBox} mb-2`}>PHP</div>
-                    <div className={`${styles.flexBox} mb-2`}>JavaScript</div>
-                    <div className={`${styles.flexBox} mb-2`}>HTML</div>
-                    <div className={`${styles.flexBox} mb-2`}>Python</div>
-                    <div className={`${styles.flexBox} mb-2`}>Laravel</div>
-                    <div className={`${styles.flexBox} mb-2`}>Golang</div>
-                    <div className={`${styles.flexBox} mb-2`}>C++</div>
-                    <div className={`${styles.flexBox} mb-2`}>Kotlin</div>
-                    <div className={`${styles.flexBox} mb-2`}>Swift</div>
+                    {skillUser.map((item) => (
+                      <div className={`ps-2 pe-2 mb-2  ${styles.flexBox}`}>
+                        {item.skill_name}
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="col-md-12 mt-4 ">
@@ -106,7 +143,7 @@ const Index = () => {
                       className="col-md-11 col-11 "
                       style={{ color: "#9EA0A5" }}
                     >
-                      Louistommo@gmail.com
+                      {users.wrk_email}
                     </div>
                     <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={instragram} />
@@ -115,7 +152,7 @@ const Index = () => {
                       className="col-md-11 col-11 "
                       style={{ color: "#9EA0A5" }}
                     >
-                      @Louist91
+                      @{users.wrk_name}
                     </div>
                     <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={github} />
@@ -124,7 +161,7 @@ const Index = () => {
                       className="col-md-11 col-11 "
                       style={{ color: "#9EA0A5" }}
                     >
-                      @Louistommo
+                      @{users.wrk_name}
                     </div>
                     <div className="col-md-1 col-1 mb-3 text-start">
                       <Image src={gitlab} />
@@ -133,15 +170,15 @@ const Index = () => {
                       className="col-md-11 col-11 "
                       style={{ color: "#9EA0A5" }}
                     >
-                      @Louistommo91
+                      @{users.wrk_name}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-md-9 ">
+            <div className="col-md-9 pb-4">
               <div
-                className="col-md-12 mt-5 container"
+                className="col-md-12 mt-5 pb-3 container"
                 style={{
                   backgroundColor: "#FFF",
                   borderRadius: "8px",
@@ -162,21 +199,28 @@ const Index = () => {
                   </ul>
                 </div>
                 <div className="col-md-12">
-                  <div className="row d-flex justify-content-between m-1">
-                    <div
-                      className="card p-0"
-                      style={{ width: "18rem", border: "none" }}
-                    >
-                      <Image
-                        src={profile}
-                        className="card-img-top"
-                        height={200}
-                        style={{ objectFit: "cover", borderRadius: "4px" }}
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title text-center">Reminder</h5>
+                  <div className="row d-flex justify-content m-1">
+                    {portofolioUser.map((item) => (
+                      <div
+                        className="card p-0"
+                        style={{ width: "18rem", border: "none" }}
+                      >
+                        <Image
+                          src={
+                            item.por_photo == "null" ? noimage : item.por_photo
+                          }
+                          className="card-img-top"
+                          height={200}
+                          width={500}
+                          style={{ objectFit: "cover", borderRadius: "4px" }}
+                        />
+                        <div className="card-body">
+                          <p className="card-title text-center fs-5">
+                            {item.por_name}
+                          </p>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
                 <div className="col-md-12 m-1 ">
@@ -193,30 +237,16 @@ const Index = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="col-md-12 border-bottom mb-4">
-                  <p className="m-0 fw-semibold fs-5">Engineer</p>
-                  <p className="m-0">Tokopedia</p>
-                  <p className="m-0" style={{ color: "#9EA0A5" }}>
-                    July 2019 - January 2020 6 months
-                  </p>
-                  <p className="mt-1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
-                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
-                  </p>
-                </div>
-                <div className="col-md-12 border-bottom mb-4">
-                  <p className="m-0 fw-semibold fs-5">Engineer</p>
-                  <p className="m-0">Tokopedia</p>
-                  <p className="m-0" style={{ color: "#9EA0A5" }}>
-                    July 2019 - January 2020 6 months
-                  </p>
-                  <p className="mt-1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum erat orci, mollis nec gravida sed, ornare quis
-                    urna. Curabitur eu lacus fringilla, vestibulum risus at.
-                  </p>
-                </div>
+                {experienceUser.map((item) => (
+                  <div className="col-md-12 border-bottom">
+                    <p className="m-0 fw-semibold fs-5">{item.exp_position}</p>
+                    <p className="m-0">{item.exp_compname}</p>
+                    <p className="m-0" style={{ color: "#9EA0A5" }}>
+                      {item.exp_datefrom} - {item.exp_dateuntil}
+                    </p>
+                    <p className="mt-1">{item.exp_desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

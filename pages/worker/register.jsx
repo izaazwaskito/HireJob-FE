@@ -7,6 +7,7 @@ import "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Link from "next/link";
 
 const register = () => {
   const router = useRouter();
@@ -219,7 +220,14 @@ const register = () => {
               </div>
             </form>
             <div className="mt-3">
-              <p className="text-center">Anda sudah punya akun? Masuk disini</p>
+              <p className="text-center">
+                Anda sudah punya akun?{" "}
+                <Link href={"/worker/login"}>
+                  <span style={{ color: "#FBB017", display: "inline-block" }}>
+                    Masuk disini
+                  </span>
+                </Link>
+              </p>
             </div>
           </div>
         </div>

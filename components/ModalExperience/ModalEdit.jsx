@@ -1,9 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { editExperience } from "../../configs/redux/actions/experienceAction";
+import { Button, Modal } from "react-bootstrap";
 
 const ModalEdit = ({
   exp_id,
@@ -39,10 +37,14 @@ const ModalEdit = ({
 
   return (
     <>
-      <Button variant="warning" onClick={handleShow}>
+      <Button
+        variant="warning"
+        onClick={handleShow}
+        className="btn btn-warning fw-semibold text-light me-3 "
+      >
         Edit
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Edit Experience</Modal.Title>
         </Modal.Header>
