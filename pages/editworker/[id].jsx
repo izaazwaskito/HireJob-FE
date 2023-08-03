@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import profile from "../../public/profile.jpg";
 import noimage from "../../public/noimage.png";
+import defaultprofile from "../../public/defaultprofile.png";
 import styles from "../hiring/Hiring.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -24,14 +25,29 @@ import {
   createSkill,
   getSkillUser,
 } from "../../configs/redux/actions/skillActions";
-
+import {
+  editWorker,
+  getWorkerUser,
+} from "../../configs/redux/actions/workerAction";
+import Form from "../../components/Form/Form";
+import Datepicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Moment from "react-moment";
+import ModalEditPhotoWorker from "../../components/ModalWorker/ModalEditPhotoWorker";
+import Swal from "sweetalert2";
 const EditProfile = () => {
-  const [users, setUsers] = useState({
-    wrk_jobdesk: "",
-    wrk_dom: "",
-    wrk_place: "",
-    wrk_desc: "",
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
   });
+
   const [login, setLogin] = useState();
   const [data, setData] = useState({
     exp_position: "",
@@ -52,44 +68,27 @@ const EditProfile = () => {
     wrk_id: "",
   });
   const [photo, setPhoto] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
   const handleUpload = (e) => {
     setPhoto(e.target.files[0]);
   };
   const router = useRouter();
 
-  //GET USERS LOGIN
   useEffect(() => {
-    const isLogin = localStorage.getItem("wrk_id");
+    if (router.isReady) {
+      const isLogin = localStorage.getItem("wrk_id");
+      setLogin(isLogin);
+    }
+  }, [router.isReady]);
 
-    axios
-      .get(`http://localhost:7474/worker/profile/${isLogin}`)
-      .then((res) => {
-        console.log(res.data.data[0]);
-        setUsers(res.data.data[0]);
-      }, [])
-      .catch((err) => {
-        console.log(err);
-      });
-    setLogin(isLogin);
-  }, []);
-
-  //UPDATE USERS
-  const handleUpdateProfile = (e) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:7474/worker/profile/${login}`, users)
-      .then((res) => {
-        setUsers(res.data.data[0]);
-        window.location.reload();
-      });
-  };
-
-  const handleChange = (e) => {
-    setUsers({
-      ...users,
-      [e.target.name]: e.target.value,
-    });
-  };
+  //WORKER
+  const { workerUser } = useSelector((state) => state.worker);
+  useEffect(() => {
+    if (router.isReady) {
+      const isLogin = localStorage.getItem("wrk_id");
+      dispatch(getWorkerUser(isLogin));
+    }
+  }, [router.isReady]);
 
   //EXPERIENCE
   const dispatch = useDispatch();
@@ -119,8 +118,7 @@ const EditProfile = () => {
   }, []);
 
   const handleCreatePortofolio = (e) => {
-    dispatch(createPortofolio(skill));
-    console.log(login);
+    dispatch(createPortofolio(porto, photo));
   };
 
   const handleChangePortofolio = (e) => {
@@ -139,7 +137,6 @@ const EditProfile = () => {
 
   const handleCreateSkill = (e) => {
     dispatch(createSkill(skill));
-    console.log(login);
   };
   const handleChangeSkill = (e) => {
     setSkill({
@@ -169,38 +166,57 @@ const EditProfile = () => {
                   borderRadius: "8px",
                 }}
               >
-                <div className="col-md-12 d-flex">
-                  <Image
-                    src={profile}
-                    width={150}
-                    height={150}
-                    className="mt-3"
-                    style={{
-                      margin: "auto",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
+                {workerUser.map((item) => (
+                  <div>
+                    <div className="col-md-12 d-flex">
+                      <Image
+                        src={
+                          item.wrk_photo == "null" || item.wrk_photo == null
+                            ? defaultprofile
+                            : item.wrk_photo
+                        }
+                        width={150}
+                        height={150}
+                        quality={100}
+                        className="mt-3"
+                        style={{
+                          margin: "auto",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
+                    <div className="col-md-12 d-flex">
+                      <ModalEditPhotoWorker wrk_id={item.wrk_id} />
+                    </div>
+                  </div>
+                ))}
                 <div className="col-md-12 mt-4">
-                  <p className="fw-semibold mb-1" style={{ fontSize: "22px" }}>
-                    {users.wrk_name}
-                  </p>
-                  <p className="mb-2" style={{ fontSize: "16px" }}>
-                    {users.wrk_jobdesk}
-                  </p>
-                  <p
-                    className="mb-2"
-                    style={{ fontSize: "14px", color: "#9EA0A5" }}
-                  >
-                    {users.wrk_dom}
-                  </p>
-                  <p
-                    className="mb-2"
-                    style={{ fontSize: "14px", color: "#9EA0A5" }}
-                  >
-                    {users.wrk_desc}
-                  </p>
+                  {workerUser.map((item) => (
+                    <div>
+                      <p
+                        className="fw-semibold mb-1"
+                        style={{ fontSize: "22px" }}
+                      >
+                        {item.wrk_name}
+                      </p>
+                      <p className="mb-2" style={{ fontSize: "16px" }}>
+                        {item.wrk_jobdesk}
+                      </p>
+                      <p
+                        className="mb-2"
+                        style={{ fontSize: "14px", color: "#9EA0A5" }}
+                      >
+                        {item.wrk_dom}
+                      </p>
+                      <p
+                        className="mb-2"
+                        style={{ fontSize: "14px", color: "#9EA0A5" }}
+                      >
+                        {item.wrk_desc}
+                      </p>
+                    </div>
+                  ))}
                   <div className="col-md-12 mt-5 ">
                     <button
                       className="btn container-fluid fw-semibold"
@@ -212,9 +228,16 @@ const EditProfile = () => {
                         borderRadius: "4px",
                         margin: "auto",
                       }}
+                      onClick={(e) => {
+                        Toast.fire({
+                          title: "Saved Account Success",
+                          icon: "success",
+                        });
+                      }}
                     >
                       Simpan
                     </button>
+
                     <button
                       className="btn container-fluid fw-semibold mt-3"
                       style={{
@@ -224,6 +247,14 @@ const EditProfile = () => {
                         backgroundColor: "#FFF",
                         borderRadius: "4px",
                         margin: "auto",
+                      }}
+                      onClick={(e) => {
+                        Toast.fire({
+                          title: "Saved Account Cancel",
+                          icon: "error",
+                        }).then((result) => {
+                          router.push("/landingpage");
+                        });
                       }}
                     >
                       Batal
@@ -244,105 +275,34 @@ const EditProfile = () => {
                   <div className="col-md-12 border-bottom pt-3">
                     <p className="fw-semibold fs-4">Data diri</p>
                   </div>
-                  <div className="col-md-12 mt-3">
-                    <p
-                      className="mb-0"
-                      style={{ color: "#9EA0A5", fontSize: 14 }}
-                    >
-                      Nama lengkap
-                    </p>
+                  {workerUser.map((item) => (
+                    <div className="col-md-12 mt-3">
+                      <div>
+                        <p
+                          className="mb-0"
+                          style={{ color: "#9EA0A5", fontSize: 14 }}
+                        >
+                          Nama lengkap
+                        </p>
+                        <input
+                          type="text"
+                          className="form-control container-fluid"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                          placeholder="Masukan nama lengkap"
+                          value={item.wrk_name}
+                          style={{ height: 50 }}
+                        />
+                      </div>
 
-                    <input
-                      type="text"
-                      className="form-control container-fluid"
-                      aria-label="Sizing example input"
-                      aria-describedby="inputGroup-sizing-lg"
-                      placeholder="Masukan nama lengkap"
-                      value={users.wrk_name}
-                      style={{ height: 50 }}
-                    />
-                    <form onSubmit={handleUpdateProfile}>
-                      <p
-                        className="mb-0 mt-3"
-                        style={{ color: "#9EA0A5", fontSize: 14 }}
-                      >
-                        Job desk
-                      </p>
-                      <input
-                        type="text"
-                        className="form-control container-fluid"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                        placeholder="Masukan job desk"
-                        value={users.wrk_jobdesk}
-                        name="wrk_jobdesk"
-                        onChange={handleChange}
-                        style={{ height: 50 }}
+                      <Form
+                        wrk_dom={item.wrk_dom}
+                        wrk_jobdesk={item.wrk_jobdesk}
+                        wrk_place={item.wrk_place}
+                        wrk_desc={item.wrk_desc}
                       />
-                      <p
-                        className="mb-0 mt-3"
-                        style={{ color: "#9EA0A5", fontSize: 14 }}
-                      >
-                        Domisili
-                      </p>
-                      <input
-                        type="text"
-                        className="form-control container-fluid"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                        placeholder="Masukan domisili"
-                        value={users.wrk_dom}
-                        name="wrk_dom"
-                        onChange={handleChange}
-                        style={{ height: 50 }}
-                      />
-                      <p
-                        className="mb-0 mt-3"
-                        style={{ color: "#9EA0A5", fontSize: 14 }}
-                      >
-                        Tempat kerja
-                      </p>
-                      <input
-                        type="text"
-                        className="form-control container-fluid"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                        placeholder="Masukan tempat kerja"
-                        value={users.wrk_place}
-                        name="wrk_place"
-                        onChange={handleChange}
-                        style={{ height: 50 }}
-                      />
-                      <p
-                        className="mb-0 mt-3"
-                        style={{ color: "#9EA0A5", fontSize: 14 }}
-                      >
-                        Deskripsi singkat
-                      </p>
-                      <textarea
-                        class="form-control"
-                        id="exampleFormControlTextarea1"
-                        rows="4"
-                        placeholder="Tuliskan deskripsi singkat"
-                        value={users.wrk_desc}
-                        name="wrk_desc"
-                        onChange={handleChange}
-                      ></textarea>
-                      <button
-                        className="btn container-fluid fw-semibold mt-3"
-                        style={{
-                          border: "1px solid #5E50A1",
-                          color: "#FFF",
-                          height: "50px",
-                          backgroundColor: "#5E50A1",
-                          borderRadius: "4px",
-                          margin: "auto",
-                        }}
-                      >
-                        Update
-                      </button>
-                    </form>
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div
@@ -404,7 +364,7 @@ const EditProfile = () => {
                   </div>
                   <div className="col-md-12 mt-3">
                     {experienceUser.map((item) => (
-                      <div className="col-md-12 border-bottom mb-4">
+                      <div className="col-md-12 border-bottom mb-4 pb-4">
                         <div className="row">
                           <div className="col-md-10">
                             <p className="m-0 fw-semibold fs-5">
@@ -412,7 +372,16 @@ const EditProfile = () => {
                             </p>
                             <p className="m-0">{item.exp_compname}</p>
                             <p className="m-0" style={{ color: "#9EA0A5" }}>
-                              {item.exp_datefrom} - {item.exp_dateuntil}
+                              <Moment format="DD MMM YYYY" withTitle>
+                                {item.exp_datefrom}
+                              </Moment>{" "}
+                              -{" "}
+                              <Moment format="DD MMM YYYY" withTitle>
+                                {item.exp_dateuntil}
+                              </Moment>{" "}
+                              <Moment from={item.exp_datefrom}>
+                                {item.exp_dateuntil}
+                              </Moment>
                             </p>
                             <p className="mt-1">{item.exp_desc}</p>
                           </div>
@@ -481,7 +450,7 @@ const EditProfile = () => {
                             Dari Bulan/tahun
                           </p>
                           <input
-                            type="text"
+                            type="date"
                             className="form-control container-fluid"
                             aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-lg"
@@ -500,7 +469,7 @@ const EditProfile = () => {
                             Sampai Bulan/tahun
                           </p>
                           <input
-                            type="text"
+                            type="date"
                             className="form-control container-fluid"
                             aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-lg"

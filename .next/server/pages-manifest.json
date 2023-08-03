@@ -2,8 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/hiring": "pages/hiring.js",
-  "/editworker/[id]": "pages/editworker/[id].js",
-  "/worker/login": "pages/worker/login.js",
-  "/landingpage": "pages/landingpage.js"
+  "/recruiter/login": "pages/recruiter/login.js",
+  "/recruiter/register": "pages/recruiter/register.js",
+  "/editrecruiter/[id]": "pages/editrecruiter/[id].js",
+  "/landingpage": "pages/landingpage.js",
+  "/hiring": "pages/hiring.js"
 }

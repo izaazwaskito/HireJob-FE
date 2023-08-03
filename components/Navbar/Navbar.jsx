@@ -9,12 +9,15 @@ import { useRouter } from "next/router";
 
 const Navbar = () => {
   const router = useRouter();
-  const [login, setLogin] = useState();
+  const [loginWrk, setLoginWrk] = useState();
+  const [loginRec, setLoginRec] = useState();
 
   useEffect(() => {
     // Perform localStorage action
-    const isLogin = localStorage.getItem("wrk_id");
-    setLogin(isLogin);
+    const isLoginWrk = localStorage.getItem("wrk_id");
+    const isLoginRec = localStorage.getItem("rec_id");
+    setLoginWrk(isLoginWrk);
+    setLoginRec(isLoginRec);
   }, []);
 
   return (
@@ -58,15 +61,20 @@ const Navbar = () => {
 
             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
               <li>
-                <Link href={`/editworker/${login}`}>
-                  <button
-                    className="dropdown-item"
-                    type="button"
-                    style={{ display: "inline-block" }}
-                  >
-                    Profile
-                  </button>
-                </Link>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={(e) => {
+                    if (loginRec) {
+                      router.push(`/editrecruiter/${loginRec}`);
+                    } else {
+                      router.push(`/editworker/${loginWrk}`);
+                    }
+                  }}
+                  style={{ display: "inline-block" }}
+                >
+                  Profile
+                </button>
               </li>
               <li>
                 <button

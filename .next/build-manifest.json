@@ -22,10 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/editworker/[id]": [
+    "/editrecruiter/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/editworker/[id].js"
+      "static/chunks/pages/editrecruiter/[id].js"
     ],
     "/hiring": [
       "static/chunks/webpack.js",
@@ -36,6 +36,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/landingpage.js"
+    ],
+    "/recruiter/login": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/recruiter/login.js"
+    ],
+    "/recruiter/register": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/recruiter/register.js"
     ]
   },
   "ampFirstPages": []

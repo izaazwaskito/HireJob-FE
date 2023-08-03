@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editExperience } from "../../configs/redux/actions/experienceAction";
 import { Button, Modal } from "react-bootstrap";
+import Datepicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ModalEdit = ({
   exp_id,
@@ -95,7 +97,7 @@ const ModalEdit = ({
                     Dari Bulan/tahun
                   </p>
                   <input
-                    type="text"
+                    type="date"
                     className="form-control container-fluid"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
@@ -114,7 +116,7 @@ const ModalEdit = ({
                     Sampai Bulan/tahun
                   </p>
                   <input
-                    type="text"
+                    type="date"
                     className="form-control container-fluid"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"

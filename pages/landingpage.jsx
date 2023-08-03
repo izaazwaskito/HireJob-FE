@@ -11,7 +11,17 @@ import NavbarLogin from "../components/Navbar/NavbarLogin";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Link from "next/link";
+import "swiper/css";
+import "swiper/css/pagination";
 
+import { Pagination } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Swiper, SwiperSlide } from "swiper/react";
 const landingpage = () => {
   const [login, setLogin] = useState();
   useEffect(() => {
@@ -646,149 +656,145 @@ const landingpage = () => {
             </section>
             <section>
               <div className={`row mb-5`}>
-                <div className="col-md-12 col-12 " style={{ display: "flex" }}>
+                <div className="col-md-12 col-12 ">
                   <div className="col-md-12">
                     <h2 className="text-center" style={{ lineHeight: "50px" }}>
                       Their opinion about peworld
                     </h2>
-                    <div
-                      id="carouselExampleAutoplaying"
-                      className="carousel slide mt-5"
-                      data-bs-ride="carousel"
+                    <Swiper
+                      pagination={{
+                        clickable: true,
+                      }}
+                      modules={[Pagination]}
+                      className={styles.swiper}
+                      breakpoints={{
+                        0: {
+                          slidesPerView: 1,
+                          spaceBetween: 20,
+                        },
+                        1080: {
+                          slidesPerView: 3,
+                          spaceBetween: 10,
+                        },
+                      }}
                     >
-                      <div className="carousel-inner">
+                      <SwiperSlide>
                         <div
-                          className="carousel-item active"
-                          style={{ display: "flex" }}
+                          className="card"
+                          style={{
+                            width: "18rem",
+                            margin: "auto",
+                            height: "40vh",
+                          }}
                         >
-                          <div className="row" style={{ margin: "auto" }}>
-                            <div
-                              className="col-md-4 mb-3"
-                              style={{ display: "flex" }}
-                            >
-                              <div
-                                className="card"
-                                style={{
-                                  width: "18rem",
-                                  margin: "auto",
-                                  height: "40vh",
-                                }}
-                              >
-                                <Image
-                                  src={profilpic1}
-                                  width={120}
-                                  height={120}
-                                  className="mt-3"
-                                  style={{ margin: "auto" }}
-                                />
-                                <div className="card-body">
-                                  <h5 className="card-title text-center">
-                                    Harry Styles
-                                  </h5>
-                                  <p className="text-center">Web Developer</p>
-                                  <p className="card-text text-center">
-                                    Lorem ipsum dolor sit <br /> amet,
-                                    consectetur
-                                    <br /> adipiscing elit. In <br />
-                                    euismod ipsum et dui
-                                    <br /> rhoncus auctor.
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              className="col-md-4 mb-3"
-                              style={{ display: "flex" }}
-                            >
-                              <div
-                                className="card"
-                                style={{
-                                  width: "18rem",
-                                  margin: "auto",
-                                  height: "40vh",
-                                }}
-                              >
-                                <Image
-                                  src={profilpic1}
-                                  width={120}
-                                  height={120}
-                                  className="mt-3"
-                                  style={{ margin: "auto" }}
-                                />
-                                <div className="card-body">
-                                  <h5 className="card-title text-center">
-                                    Niall Horan
-                                  </h5>
-                                  <p className="text-center">Web Developer</p>
-                                  <p className="card-text text-center">
-                                    Lorem ipsum dolor sit <br /> amet,
-                                    consectetur
-                                    <br /> adipiscing elit.
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              className="col-md-4 mb-3"
-                              style={{ display: "flex" }}
-                            >
-                              <div
-                                className="card"
-                                style={{
-                                  width: "18rem",
-                                  height: "40vh",
-                                  margin: "auto",
-                                }}
-                              >
-                                <Image
-                                  src={profilpic1}
-                                  width={120}
-                                  height={120}
-                                  className="mt-3"
-                                  style={{ margin: "auto" }}
-                                />
-                                <div className="card-body">
-                                  <h5 className="card-title text-center">
-                                    Louis Tomlinson
-                                  </h5>
-                                  <p className="text-center">Web Developer</p>
-                                  <p className="card-text text-center">
-                                    Lorem ipsum dolor sit <br /> amet,
-                                    consectetur
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
+                          <Image
+                            src={profilpic1}
+                            width={120}
+                            height={120}
+                            className="mt-3"
+                            style={{ margin: "auto" }}
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title text-center">
+                              Harry Styles
+                            </h5>
+                            <p className="text-center">Web Developer</p>
+                            <p className="card-text text-center">
+                              Lorem ipsum dolor sit <br /> amet, consectetur
+                              <br /> adipiscing elit. In <br />
+                              euismod ipsum.
+                            </p>
                           </div>
                         </div>
-                        {/* <div className="carousel-item"></div>
-                        <div className="carousel-item"></div> */}
-                      </div>
-                      <button
-                        className="carousel-control-prev"
-                        type="button"
-                        data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="prev"
-                      >
-                        <span
-                          className="carousel-control-prev-icon"
-                          aria-hidden="true"
-                        />
-                        <span className="visually-hidden">Previous</span>
-                      </button>
-                      <button
-                        className="carousel-control-next"
-                        type="button"
-                        data-bs-target="#carouselExampleAutoplaying"
-                        data-bs-slide="next"
-                      >
-                        <span
-                          className="carousel-control-next-icon"
-                          aria-hidden="true"
-                        />
-                        <span className="visually-hidden">Next</span>
-                      </button>
-                    </div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div
+                          className="card"
+                          style={{
+                            width: "18rem",
+                            margin: "auto",
+                            height: "40vh",
+                          }}
+                        >
+                          <Image
+                            src={profilpic1}
+                            width={120}
+                            height={120}
+                            className="mt-3"
+                            style={{ margin: "auto" }}
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title text-center">
+                              Harry Styles
+                            </h5>
+                            <p className="text-center">Web Developer</p>
+                            <p className="card-text text-center">
+                              Lorem ipsum dolor sit <br /> amet, consectetur
+                              <br /> adipiscing elit. In <br />
+                              euismod ipsum.
+                            </p>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div
+                          className="card"
+                          style={{
+                            width: "18rem",
+                            margin: "auto",
+                            height: "40vh",
+                          }}
+                        >
+                          <Image
+                            src={profilpic1}
+                            width={120}
+                            height={120}
+                            className="mt-3"
+                            style={{ margin: "auto" }}
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title text-center">
+                              Harry Styles
+                            </h5>
+                            <p className="text-center">Web Developer</p>
+                            <p className="card-text text-center">
+                              Lorem ipsum dolor sit <br /> amet, consectetur
+                              <br /> adipiscing elit. In <br />
+                              euismod ipsum.
+                            </p>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <div
+                          className="card"
+                          style={{
+                            width: "18rem",
+                            margin: "auto",
+                            height: "40vh",
+                          }}
+                        >
+                          <Image
+                            src={profilpic1}
+                            width={120}
+                            height={120}
+                            className="mt-3"
+                            style={{ margin: "auto" }}
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title text-center">
+                              Harry Styles
+                            </h5>
+                            <p className="text-center">Web Developer</p>
+                            <p className="card-text text-center">
+                              Lorem ipsum dolor sit <br /> amet, consectetur
+                              <br /> adipiscing elit. In <br />
+                              euismod ipsum.
+                            </p>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    </Swiper>
                   </div>
                 </div>
               </div>

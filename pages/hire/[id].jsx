@@ -9,6 +9,7 @@ import styles from "../hiring/Hiring.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import noimage from "../../public/noimage.png";
+import defaultprofile from "../../public/defaultprofile.png";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -78,7 +79,11 @@ const Index = () => {
               >
                 <div className="col-md-12 d-flex">
                   <Image
-                    src={profile}
+                    src={
+                      users.wrk_photo == "null" || users.wrk_photo == null
+                        ? defaultprofile
+                        : users.wrk_photo
+                    }
                     width={150}
                     height={150}
                     className="mt-3"

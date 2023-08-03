@@ -37,17 +37,19 @@ const NavbarLogin = () => {
                 Masuk Untuk Pekerja
               </button>
             </Link>
-            <button
-              className="btn fw-semibold"
-              style={{
-                border: "1px solid #5E50A1",
-                color: "#FFF",
-                backgroundColor: "#5E50A1",
-                height: "44px",
-              }}
-            >
-              Masuk Untuk Perekrut
-            </button>
+            <Link href={"/recruiter/login"}>
+              <button
+                className="btn fw-semibold"
+                style={{
+                  border: "1px solid #5E50A1",
+                  color: "#FFF",
+                  backgroundColor: "#5E50A1",
+                  height: "44px",
+                }}
+              >
+                Masuk Untuk Perekrut
+              </button>
+            </Link>
           </div>
         </div>
       </nav>

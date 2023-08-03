@@ -1,11 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import authphoto from "../../public/authphoto.jpg";
 import logo from "../../public/PeworldPutih.png";
 import "../../styles/Home.module.css";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
+import axios from "axios";
+import Link from "next/link";
 
 const register = () => {
+  const router = useRouter();
+  const [data, setData] = useState({
+    rec_name: "",
+    rec_email: "",
+    rec_compname: "",
+    rec_position: "",
+    rec_phone: "",
+    rec_password: "",
+    rec_confirmpassword: "",
+  });
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  const handleRegisterRecruiter = (e) => {
+    e.preventDefault();
+    try {
+      axios
+        .post(`http://localhost:7474/recruiter/register`, data)
+        .then((res) => {
+          console.log(res.statusText);
+          if (res.statusText === "Created") {
+            Toast.fire({
+              title: "Account Created Success",
+              icon: "success",
+            }).then((result) => {
+              router.push("/recruiter/login");
+            });
+          } else if (res.statusText === "OK") {
+            Toast.fire({
+              title: "Account Created Error",
+              icon: "error",
+            }).then((err) => {
+              router.push("/recruiter/register");
+            });
+          } else {
+            console.log("error");
+          }
+        });
+    } catch (err) {}
+  };
+
   return (
     <div className="container" style={{ maxWidth: 1770 }}>
       <Head>
@@ -68,120 +129,151 @@ const register = () => {
                 euismod ipsum et dui rhoncus auctor.
               </h5>
             </div>
-            <div>
-              <p className="mb-0" style={{ color: "#9EA0A5", fontSize: 14 }}>
-                Nama
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan nama panjang"
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                Email
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan alamat email"
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                Perusahaan
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan nama perusahaan"
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                Jabatan
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Posisi di perusahaan Anda
+            <form onSubmit={handleRegisterRecruiter}>
+              <div>
+                <p className="mb-0" style={{ color: "#9EA0A5", fontSize: 14 }}>
+                  Nama
+                </p>
+                <input
+                  type="text"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan nama panjang"
+                  name="rec_name"
+                  value={data.rec_name}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  Email
+                </p>
+                <input
+                  type="text"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan alamat email"
+                  name="rec_email"
+                  value={data.rec_email}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  Perusahaan
+                </p>
+                <input
+                  type="text"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan nama perusahaan"
+                  name="rec_compname"
+                  value={data.rec_compname}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  Jabatan
+                </p>
+                <input
+                  type="text"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Posisi di perusahaan Anda
                 "
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                No handphone
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan no handphone"
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                Kata Sandi
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan kata sandi"
-                style={{ height: 50 }}
-              />
-              <p
-                className="mt-3 mb-0"
-                style={{ color: "#9EA0A5", fontSize: 14 }}
-              >
-                Konfirmasi kata sandi
-              </p>
-              <input
-                type="text"
-                className="form-control container-fluid"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                placeholder="Masukan konfirmasi kata sandi"
-                style={{ height: 50 }}
-              />
-            </div>
-            <div>
-              <button
-                className="container-fluid mt-5"
-                style={{
-                  backgroundColor: "#FBB017",
-                  color: "white",
-                  borderRadius: 4,
-                  height: 50,
-                  border: 0,
-                }}
-              >
-                Daftar
-              </button>
-            </div>
+                  name="rec_position"
+                  value={data.rec_position}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  No handphone
+                </p>
+                <input
+                  type="text"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan no handphone"
+                  name="rec_phone"
+                  value={data.rec_phone}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  Kata Sandi
+                </p>
+                <input
+                  type="password"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan kata sandi"
+                  name="rec_password"
+                  value={data.rec_password}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+                <p
+                  className="mt-3 mb-0"
+                  style={{ color: "#9EA0A5", fontSize: 14 }}
+                >
+                  Konfirmasi kata sandi
+                </p>
+                <input
+                  type="password"
+                  className="form-control container-fluid"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  placeholder="Masukan konfirmasi kata sandi"
+                  name="rec_confirmpassword"
+                  value={data.rec_confirmpassword}
+                  onChange={handleChange}
+                  style={{ height: 50 }}
+                />
+              </div>
+              <div>
+                <button
+                  className="container-fluid mt-5"
+                  type="submit"
+                  style={{
+                    backgroundColor: "#FBB017",
+                    color: "white",
+                    borderRadius: 4,
+                    height: 50,
+                    border: 0,
+                  }}
+                >
+                  Daftar
+                </button>
+              </div>
+            </form>
             <div className="mt-3">
-              <p className="text-center">Anda sudah punya akun? Masuk disini</p>
+              <p className="text-center">
+                Anda sudah punya akun?{" "}
+                <Link href={"/recruiter/login"}>
+                  <span style={{ color: "#FBB017", display: "inline-block" }}>
+                    Masuk disini
+                  </span>
+                </Link>
+              </p>
             </div>
           </div>
         </div>

@@ -19,6 +19,13 @@
     margin: auto;
     padding-left: 550px;
 }
+
+  .swiper {
+    width: 80%;
+    height: 100%;
+  }
+
+  
   
 @media only screen and (max-width: 768px) {
     
@@ -33,9 +40,17 @@
         margin: auto;
         padding-left: 0;
     }
-    
+    .bfooterl h1{
+        font-size: 20px;
+    }
+    .bfooterr button{
+        font-size: 15px;
+    }
     .bfooterr{
         margin: auto;
         padding-left: 0;
     }
+    
+      
+    
 }

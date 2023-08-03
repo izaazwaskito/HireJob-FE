@@ -3,13 +3,14 @@ import Image from "next/image";
 import profile from "../../public/profile.jpg";
 import styles from "./Hiring.module.css";
 import Navbar from "../../components/Navbar/Navbar";
+import defaultprofile from "../../public/defaultprofile.png";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { getSkillUser } from "../../configs/redux/actions/skillActions";
 import Pagination from "../../components/Pagination/Pagination";
+import SkillShow from "../../components/SkillShow/SkillShow";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -25,12 +26,6 @@ const Index = () => {
       .get(`http://localhost:7474/worker/profile`)
       .then((response) => setData(response.data.data))
       .catch((error) => console.log(error));
-  }, []);
-
-  const { skillUser } = useSelector((state) => state.skill);
-  useEffect(() => {
-    // const isLogin =
-    // dispatch(getSkillUser(isLogin));
   }, []);
 
   const onSelectionChange = (e) => {
@@ -52,8 +47,8 @@ const Index = () => {
           </div>
         </nav>
       </header>
-      <main className={styles.mainBackground}>
-        <div className="container" style={{ height: "100vh", maxWidth: 1650 }}>
+      <main className={styles.mainBackground} style={{ display: "relative" }}>
+        <div className="container pb-4" style={{ maxWidth: 1650 }}>
           <div className="input-group mb-3 pt-5">
             <input
               type="text"
@@ -70,8 +65,8 @@ const Index = () => {
               x
             >
               <option selected>Sort</option>
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
+              <option value="asc">Sort by name</option>
+              <option value="desc">Sort by place</option>
             </select>
             <button
               className="btn"
@@ -99,14 +94,14 @@ const Index = () => {
                           .toLowerCase()
                           .includes(search.toLowerCase());
                   })
-                  //           return sortDirection === "asc"
-                  // ? a.name.localeCompare(b.name)
-                  // : b.name.localeCompare(a.name);
-                  // .sort((a, b) => (a.wrk_name > b.wrk_name ? 1 : -1))
                   .sort((a, b) => {
                     return sort === "asc"
-                      ? a.wrk_name.localeCompare(b.wrk_name)
-                      : b.wrk_name.localeCompare(a.wrk_name);
+                      ? a.wrk_name > b.wrk_name
+                        ? 1
+                        : -1
+                      : a.wrk_place > b.wrk_place
+                      ? 1
+                      : -1;
                   })
                   .map((item) => (
                     <div className="col-md-12  border-bottom">
@@ -116,7 +111,12 @@ const Index = () => {
                             style={{ marginLeft: "auto", marginRight: "auto" }}
                           >
                             <Image
-                              src={profile}
+                              src={
+                                item.wrk_photo == "null" ||
+                                item.wrk_photo == null
+                                  ? defaultprofile
+                                  : item.wrk_photo
+                              }
                               width={145}
                               height={145}
                               style={{
@@ -138,15 +138,9 @@ const Index = () => {
                           <p className="mb-3" style={{ color: "#9EA0A5" }}>
                             {item.wrk_email}
                           </p>
-                          <div className="col-md-12 mt-3 d-flex">
-                            {/* {item.skill_name.map((skill) => (
-                            <div className={`ps-2 pe-2  ${styles.flexBox}`}>
-                              {skill}
-                            </div>
-                          ))} */}
-                          </div>
+                          {/* <SkillShow wrk_id={item.wrk_id} /> */}
                         </div>
-                        <div className="col-md-2 col-12 ">
+                        <div className="col-md-2 col-12 mt-4">
                           <Link
                             className="d-flex"
                             href={`/hiring/${item.wrk_id}`}

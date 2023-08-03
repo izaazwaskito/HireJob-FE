@@ -25,9 +25,6 @@
 .sideProfileEdit{
     height: 280vh;
 }
-.hightPK{
-    
-}
 .hightPF{
     height: 75vh;
 }
@@ -42,9 +39,7 @@
     .sideProfileEdit{
         height: max-content;
     }
-    .hightPK{
-        
-    }
+    
     .hightPF{
         height: 100vh;
     }

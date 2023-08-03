@@ -15,7 +15,6 @@ export default function Document() {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
         />
-        <link rel="stylesheet" href="sweetalert2.min.css" />
       </Head>
       <body>
         <Main />
@@ -30,7 +29,7 @@ export default function Document() {
           integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
           crossOrigin="anonymous"
         ></script>
-        <script src="sweetalert2.all.min.js"></script>
+        {/* <script src="sweetalert2.all.min.js"></script> */}
       </body>
     </Html>
   );

@@ -10,12 +10,14 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import noimage from "../../public/noimage.png";
 import { useRouter } from "next/router";
+import defaultprofile from "../../public/defaultprofile.png";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getPortofolioUser } from "../../configs/redux/actions/portofolioAction";
 import { getExperienceUser } from "../../configs/redux/actions/experienceAction";
 import { getSkillUser } from "../../configs/redux/actions/skillActions";
 import Link from "next/link";
+import Moment from "react-moment";
 
 const Index = () => {
   const router = useRouter();
@@ -79,7 +81,11 @@ const Index = () => {
               >
                 <div className="col-md-12 d-flex">
                   <Image
-                    src={profile}
+                    src={
+                      users.wrk_photo == "null" || users.wrk_photo == null
+                        ? defaultprofile
+                        : users.wrk_photo
+                    }
                     width={150}
                     height={150}
                     className="mt-3"
@@ -126,7 +132,7 @@ const Index = () => {
                 </div>
                 <div className="col-md-12 mt-4">
                   <h4>Skill</h4>
-                  <div className="d-flex flex-wrap justify-content-between ">
+                  <div className="d-flex flex-wrap ">
                     {skillUser.map((item) => (
                       <div className={`ps-2 pe-2 mb-2  ${styles.flexBox}`}>
                         {item.skill_name}
@@ -242,7 +248,16 @@ const Index = () => {
                     <p className="m-0 fw-semibold fs-5">{item.exp_position}</p>
                     <p className="m-0">{item.exp_compname}</p>
                     <p className="m-0" style={{ color: "#9EA0A5" }}>
-                      {item.exp_datefrom} - {item.exp_dateuntil}
+                      <Moment format="DD MMM YYYY" withTitle>
+                        {item.exp_datefrom}
+                      </Moment>{" "}
+                      -{" "}
+                      <Moment format="DD MMM YYYY" withTitle>
+                        {item.exp_dateuntil}
+                      </Moment>{" "}
+                      <Moment from={item.exp_datefrom}>
+                        {item.exp_dateuntil}
+                      </Moment>
                     </p>
                     <p className="mt-1">{item.exp_desc}</p>
                   </div>
