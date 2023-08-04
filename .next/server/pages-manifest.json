@@ -1,8 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/landingpage": "pages/landingpage.js",
-  "/worker/login": "pages/worker/login.js",
-  "/editworker/[id]": "pages/editworker/[id].js"
-}
