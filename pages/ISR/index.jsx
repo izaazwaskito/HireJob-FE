@@ -101,9 +101,9 @@ function SSG({ worker }) {
                       : -1;
                   })
                   .map((item) => (
-                    <div className="col-md-12  border-bottom">
-                      <div className="row mt-4 mb-3">
-                        <div className="col-md-2 col-12  d-flex">
+                    <div className="col-md-12 border-bottom">
+                      <div className="row mt-4 mb-3" key={item.wrk_id}>
+                        <div className="col-md-2 col-12 d-flex">
                           <div
                             style={{ marginLeft: "auto", marginRight: "auto" }}
                           >
@@ -120,6 +120,7 @@ function SSG({ worker }) {
                                 borderRadius: "50%",
                                 objectFit: "cover",
                               }}
+                              alt="profile"
                             />
                           </div>
                         </div>

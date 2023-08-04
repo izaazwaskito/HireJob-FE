@@ -101,7 +101,7 @@ function SSR({ worker }) {
                   })
                   .map((item) => (
                     <div className="col-md-12  border-bottom">
-                      <div className="row mt-4 mb-3">
+                      <div className="row mt-4 mb-3" key={item.wrk_id}>
                         <div className="col-md-2 col-12  d-flex">
                           <div
                             style={{ marginLeft: "auto", marginRight: "auto" }}
@@ -119,6 +119,7 @@ function SSR({ worker }) {
                                 borderRadius: "50%",
                                 objectFit: "cover",
                               }}
+                              alt="profile"
                             />
                           </div>
                         </div>

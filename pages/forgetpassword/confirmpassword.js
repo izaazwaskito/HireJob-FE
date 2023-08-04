@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 
-const otp = () => {
+const confirmpassword = () => {
   const router = useRouter();
   const [data, setData] = useState({
     wrk_email: "",
@@ -92,6 +92,7 @@ const otp = () => {
                 objectFit: "cover",
                 opacity: "0.2",
               }}
+              alt="sideimage"
             />
             <div style={{ position: "absolute", top: 44, left: 44 }}>
               <Image src={logo} style={{ width: 86, height: 24 }} />
@@ -179,4 +180,4 @@ const otp = () => {
   );
 };
 
-export default otp;
+export default confirmpassword;
