@@ -23,7 +23,7 @@ const Index = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:7474/worker/profile`)
+      .get(`h${process.env.NEXT_PUBLIC_API}/worker/profile`)
       .then((response) => setData(response.data.data))
       .catch((error) => console.log(error));
   }, []);

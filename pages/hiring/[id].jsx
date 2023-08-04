@@ -30,7 +30,7 @@ const Index = () => {
   useEffect(() => {
     if (router.isReady) {
       axios
-        .get(`http://localhost:7474/worker/profile/${router.query.id}`)
+        .get(`${process.env.NEXT_PUBLIC_API}/worker/profile/${router.query.id}`)
         .then((response) => {
           setUsers(response.data.data[0]);
         })

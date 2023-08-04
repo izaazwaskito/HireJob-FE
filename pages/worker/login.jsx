@@ -38,7 +38,7 @@ const login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:7474/worker/login`, data)
+      .post(`${process.env.NEXT_PUBLIC_API}/worker/login`, data)
       .then((res) => {
         console.log(res.data.message);
         if (res.status === 201) {

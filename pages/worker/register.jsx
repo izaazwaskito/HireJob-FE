@@ -40,26 +40,28 @@ const register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     try {
-      axios.post(`http://localhost:7474/worker/register`, data).then((res) => {
-        console.log(res.statusText);
-        if (res.statusText === "Created") {
-          Toast.fire({
-            title: "Account Created Success",
-            icon: "success",
-          }).then((result) => {
-            router.push("/worker/login");
-          });
-        } else if (res.statusText === "OK") {
-          Toast.fire({
-            title: "Account Created Error",
-            icon: "error",
-          }).then((err) => {
-            router.push("/worker/register");
-          });
-        } else {
-          console.log("error");
-        }
-      });
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API}/worker/register`, data)
+        .then((res) => {
+          console.log(res.statusText);
+          if (res.statusText === "Created") {
+            Toast.fire({
+              title: "Account Created Success",
+              icon: "success",
+            }).then((result) => {
+              router.push("/worker/login");
+            });
+          } else if (res.statusText === "OK") {
+            Toast.fire({
+              title: "Account Created Error",
+              icon: "error",
+            }).then((err) => {
+              router.push("/worker/register");
+            });
+          } else {
+            console.log("error");
+          }
+        });
     } catch (err) {}
   };
 

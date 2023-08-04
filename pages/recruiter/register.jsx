@@ -43,7 +43,7 @@ const register = () => {
     e.preventDefault();
     try {
       axios
-        .post(`http://localhost:7474/recruiter/register`, data)
+        .post(`${process.env.NEXT_PUBLIC_API}/recruiter/register`, data)
         .then((res) => {
           console.log(res.statusText);
           if (res.statusText === "Created") {

@@ -36,15 +36,6 @@ const Navbar = () => {
           <div className="ms-md-5 ms-4">
             <Image src={mail} />
           </div>
-          {/* <Link href={`/editworker/${login}`}>
-            <div className="ms-md-5 ms-4">
-              <Image
-                src={profile}
-                height={32}
-                style={{ borderRadius: "50%" }}
-              />
-            </div>
-          </Link> */}
           <div className="btn-group">
             <div
               className="ms-md-5 ms-4"

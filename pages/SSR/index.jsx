@@ -12,7 +12,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import SkillShow from "../../components/SkillShow/SkillShow";
 
 export async function getServerSideProps() {
-  const res = await axios.get("http://localhost:7474/worker/profile");
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API}/worker/profile`);
   return {
     props: { worker: res.data.data },
   };

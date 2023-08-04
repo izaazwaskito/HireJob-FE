@@ -16,7 +16,7 @@ const Toast = Swal.mixin({
 export const getWorkerUser = (isLogin) => async (dispatch) => {
   try {
     const workers = await axios.get(
-      `http://localhost:7474/worker/profile/${isLogin}`
+      `${process.env.NEXT_PUBLIC_API}/worker/profile/${isLogin}`
     );
     const result = workers.data.data;
     dispatch({ type: "GET_ALL_WORKER_USER", payload: result });
@@ -24,21 +24,6 @@ export const getWorkerUser = (isLogin) => async (dispatch) => {
     console.error(err.message);
   }
 };
-
-// export const createWorker = (data) => async (dispatch) => {
-//   try {
-//     const workers = await axios.post(
-//       `${process.env.NEXT_PUBLIC_API}/worker/register`,
-//       data
-//     );
-//     const result = workers.data.data;
-//     console.log(result);
-//     dispatch({ type: "CREATE_WORKER", payload: result });
-//     window.location.reload();
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// };
 
 export const editWorker = (wrk_id, worker) => async (dispatch) => {
   try {

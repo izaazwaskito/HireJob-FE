@@ -22,14 +22,6 @@ const ModalEditPhotoWorker = ({ wrk_id }) => {
 
   return (
     <>
-      {/* <Button
-        variant="warning"
-        onClick={handleShow}
-        className="btn btn-warning fw-semibold text-light me-3 "
-      >
-        Edit
-      </Button> */}
-
       <div className="row m-auto" onClick={handleShow}>
         <div className="col-md-1 col-1">
           <Image src={pen} style={{ cursor: "pointer" }} />
