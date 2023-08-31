@@ -32,6 +32,7 @@ const EditProfile = () => {
       const isLogin = localStorage.getItem("rec_id");
       dispatch(getRecruiterUser(isLogin));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   const Toast = Swal.mixin({
@@ -68,7 +69,7 @@ const EditProfile = () => {
                 }}
               >
                 {recruiterUser.map((item) => (
-                  <div>
+                  <div key={item.rec_id}>
                     <div className="col-md-12 d-flex">
                       <Image
                         src={
@@ -84,6 +85,7 @@ const EditProfile = () => {
                           borderRadius: "50%",
                           objectFit: "cover",
                         }}
+                        alt="photo"
                       />
                     </div>
                     <div className="col-md-12 d-flex">
@@ -93,7 +95,7 @@ const EditProfile = () => {
                 ))}
                 <div className="col-md-12 mt-4">
                   {recruiterUser.map((item) => (
-                    <div>
+                    <div key={item.rec_id}>
                       <p
                         className="fw-semibold mb-1"
                         style={{ fontSize: "22px" }}
@@ -173,7 +175,7 @@ const EditProfile = () => {
                     <p className="fw-semibold fs-4">Data diri</p>
                   </div>
                   {recruiterUser.map((item) => (
-                    <div className="col-md-12 mt-3">
+                    <div className="col-md-12 mt-3" key={item.rec_id}>
                       <p
                         className="mb-0"
                         style={{ color: "#9EA0A5", fontSize: 14 }}

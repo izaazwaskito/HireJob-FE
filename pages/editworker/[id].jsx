@@ -89,6 +89,7 @@ const EditProfile = () => {
       const isLogin = localStorage.getItem("wrk_id");
       dispatch(getWorkerUser(isLogin));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   //EXPERIENCE
@@ -97,6 +98,7 @@ const EditProfile = () => {
   useEffect(() => {
     const isLogin = localStorage.getItem("wrk_id");
     dispatch(getExperienceUser(isLogin));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCreateExperience = (e) => {
@@ -116,6 +118,7 @@ const EditProfile = () => {
   useEffect(() => {
     const isLogin = localStorage.getItem("wrk_id");
     dispatch(getPortofolioUser(isLogin));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCreatePortofolio = (e) => {
@@ -134,6 +137,7 @@ const EditProfile = () => {
   useEffect(() => {
     const isLogin = localStorage.getItem("wrk_id");
     dispatch(getSkillUser(isLogin));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCreateSkill = (e) => {
@@ -172,7 +176,7 @@ const EditProfile = () => {
                 }}
               >
                 {workerUser.map((item) => (
-                  <div>
+                  <div key={item.wrk_id}>
                     <div className="col-md-12 d-flex">
                       <Image
                         src={
