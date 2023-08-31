@@ -37,6 +37,7 @@ const Index = () => {
         .catch((error) => console.log(error));
       console.log(router.query);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const Index = () => {
       const isLogin = router.query.id;
       dispatch(getPortofolioUser(isLogin));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   useEffect(() => {
@@ -51,6 +53,7 @@ const Index = () => {
       const isLogin = router.query.id;
       dispatch(getExperienceUser(isLogin));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   useEffect(() => {
@@ -58,6 +61,7 @@ const Index = () => {
       const isLogin = router.query.id;
       dispatch(getSkillUser(isLogin));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
   return (
@@ -94,6 +98,7 @@ const Index = () => {
                       borderRadius: "50%",
                       objectFit: "cover",
                     }}
+                    alt="photo"
                   />
                 </div>
                 <div className="col-md-12 mt-4">
@@ -133,8 +138,11 @@ const Index = () => {
                 <div className="col-md-12 mt-4">
                   <h4>Skill</h4>
                   <div className="d-flex flex-wrap ">
-                    {skillUser.map((item) => (
-                      <div className={`ps-2 pe-2 mb-2  ${styles.flexBox}`}>
+                    {skillUser.map((item, index) => (
+                      <div
+                        className={`ps-2 pe-2 mb-2  ${styles.flexBox}`}
+                        key={index}
+                      >
                         {item.skill_name}
                       </div>
                     ))}
@@ -143,7 +151,7 @@ const Index = () => {
                 <div className="col-md-12 mt-4 ">
                   <div className="row">
                     <div className="col-md-1 col-1 mb-3 text-start">
-                      <Image src={mail} />
+                      <Image src={mail} alt="mail" />
                     </div>
                     <div
                       className="col-md-11 col-11 "
@@ -152,7 +160,7 @@ const Index = () => {
                       {users.wrk_email}
                     </div>
                     <div className="col-md-1 col-1 mb-3 text-start">
-                      <Image src={instragram} />
+                      <Image src={instragram} alt="instagram" />
                     </div>
                     <div
                       className="col-md-11 col-11 "
@@ -161,7 +169,7 @@ const Index = () => {
                       @{users.wrk_name}
                     </div>
                     <div className="col-md-1 col-1 mb-3 text-start">
-                      <Image src={github} />
+                      <Image src={github} alt="github" />
                     </div>
                     <div
                       className="col-md-11 col-11 "
@@ -170,7 +178,7 @@ const Index = () => {
                       @{users.wrk_name}
                     </div>
                     <div className="col-md-1 col-1 mb-3 text-start">
-                      <Image src={gitlab} />
+                      <Image src={gitlab} alt="gitlab" />
                     </div>
                     <div
                       className="col-md-11 col-11 "
@@ -206,15 +214,17 @@ const Index = () => {
                 </div>
                 <div className="col-md-12">
                   <div className="row d-flex justify-content m-1">
-                    {portofolioUser.map((item) => (
+                    {portofolioUser.map((item, index) => (
                       <div
                         className="card p-0"
                         style={{ width: "18rem", border: "none" }}
+                        key={index}
                       >
                         <Image
                           src={
                             item.por_photo == "null" ? noimage : item.por_photo
                           }
+                          alt="photo"
                           className="card-img-top"
                           height={200}
                           width={500}
@@ -243,8 +253,8 @@ const Index = () => {
                     </li>
                   </ul>
                 </div>
-                {experienceUser.map((item) => (
-                  <div className="col-md-12 border-bottom">
+                {experienceUser.map((item, index) => (
+                  <div className="col-md-12 border-bottom" key={index}>
                     <p className="m-0 fw-semibold fs-5">{item.exp_position}</p>
                     <p className="m-0">{item.exp_compname}</p>
                     <p className="m-0" style={{ color: "#9EA0A5" }}>

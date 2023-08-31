@@ -9,7 +9,7 @@ const NavbarLogin = () => {
       <nav className="navbar navbar-expand-lg bg-white fixed-top">
         <div className="container" style={{ maxWidth: 1650 }}>
           <a className="navbar-brand" href="#">
-            <Image src={logo} height={35} />
+            <Image src={logo} height={35} alt="photo" />
           </a>
           <button
             className="navbar-toggler"

@@ -15,7 +15,7 @@ const Footer = () => {
       >
         <div className="container" style={{ maxWidth: 1650 }}>
           <div className="col-md-12">
-            <Image src={logo1} height={35} className="mt-5" />
+            <Image src={logo1} height={35} className="mt-5" alt="photo" />
             <p className="mt-4 mb-5" style={{ color: "white" }}>
               Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit. In
               euismod ipsum et dui <br /> rhoncus auctor.

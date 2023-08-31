@@ -69,7 +69,7 @@ const otp = () => {
               alt="sideimage"
             />
             <div style={{ position: "absolute", top: 44, left: 44 }}>
-              <Image src={logo} style={{ width: 86, height: 24 }} />
+              <Image src={logo} style={{ width: 86, height: 24 }} alt="logo" />
             </div>
             <div
               style={{
@@ -96,8 +96,8 @@ const otp = () => {
             <div className="mb-5">
               <h3>Otp</h3>
               <h5>
-                Enter your user account's verified email address and we will
-                send you a password reset link.
+                Enter your user accounts verified email address and we will send
+                you a password reset link.
               </h5>
             </div>
             <div>

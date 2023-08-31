@@ -24,7 +24,7 @@ const ModalEditPhotoRecruiter = ({ rec_id }) => {
     <>
       <div className="row m-auto" onClick={handleShow}>
         <div className="col-md-1 col-1">
-          <Image src={pen} style={{ cursor: "pointer" }} />
+          <Image src={pen} style={{ cursor: "pointer" }} alt="photo" />
         </div>
         <div className="col-md-2 col-4 ps-2">
           <p

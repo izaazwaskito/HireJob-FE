@@ -26,15 +26,15 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg bg-white sticky-top">
         <div className="container" style={{ maxWidth: 1650 }}>
           <Link href={`/landingpage`}>
-            <Image src={logo} height={35} />
+            <Image src={logo} height={35} alt="photo" />
           </Link>
 
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <div className="ms-md-5 ms-4">
-            <Image src={bell} />
+            <Image src={bell} alt="photo" />
           </div>
           <div className="ms-md-5 ms-4">
-            <Image src={mail} />
+            <Image src={mail} alt="photo" />
           </div>
           <div className="btn-group">
             <div
@@ -47,6 +47,7 @@ const Navbar = () => {
                 src={profile}
                 height={32}
                 style={{ borderRadius: "50%" }}
+                alt="photo"
               />
             </div>
 

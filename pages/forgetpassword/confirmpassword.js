@@ -42,7 +42,7 @@ const confirmpassword = () => {
               alt="sideimage"
             />
             <div style={{ position: "absolute", top: 44, left: 44 }}>
-              <Image src={logo} style={{ width: 86, height: 24 }} />
+              <Image src={logo} style={{ width: 86, height: 24 }} alt="logo" />
             </div>
             <div
               style={{

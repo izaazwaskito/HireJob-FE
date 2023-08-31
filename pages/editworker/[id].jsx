@@ -193,6 +193,7 @@ const EditProfile = () => {
                           borderRadius: "50%",
                           objectFit: "cover",
                         }}
+                        alt="photo"
                       />
                     </div>
                     <div className="col-md-12 d-flex">
@@ -201,8 +202,8 @@ const EditProfile = () => {
                   </div>
                 ))}
                 <div className="col-md-12 mt-4">
-                  {workerUser.map((item) => (
-                    <div>
+                  {workerUser.map((item, index) => (
+                    <div key={index}>
                       <p
                         className="fw-semibold mb-1"
                         style={{ fontSize: "22px" }}
@@ -284,8 +285,8 @@ const EditProfile = () => {
                   <div className="col-md-12 border-bottom pt-3">
                     <p className="fw-semibold fs-4">Data diri</p>
                   </div>
-                  {workerUser.map((item) => (
-                    <div className="col-md-12 mt-3">
+                  {workerUser.map((item, index) => (
+                    <div className="col-md-12 mt-3" key={index}>
                       <div>
                         <p
                           className="mb-0"
@@ -326,11 +327,12 @@ const EditProfile = () => {
                     <p className="fw-semibold fs-4">Skill</p>
                   </div>
                   <div className="col-md-12 mt-3 d-flex flex-wrap">
-                    {skillUser.map((item) => (
+                    {skillUser.map((item, index) => (
                       <div
                         className={`ps-2 pe-2  mb-2 ${styles.flexBox}`}
                         onClick={() => handleDelete(item.skill_id)}
                         style={{ cursor: "pointer" }}
+                        key={index}
                       >
                         {item.skill_name}
                       </div>
@@ -376,8 +378,11 @@ const EditProfile = () => {
                     <p className="fw-semibold fs-4">Pengalaman kerja</p>
                   </div>
                   <div className="col-md-12 mt-3">
-                    {experienceUser.map((item) => (
-                      <div className="col-md-12 border-bottom mb-4 pb-4">
+                    {experienceUser.map((item, index) => (
+                      <div
+                        className="col-md-12 border-bottom mb-4 pb-4"
+                        key={index}
+                      >
                         <div className="row">
                           <div className="col-md-10">
                             <p className="m-0 fw-semibold fs-5">
@@ -541,8 +546,8 @@ const EditProfile = () => {
                     <p className="fw-semibold fs-4">Portofolio</p>
                   </div>
                   <div className="col-md-12 mt-3">
-                    {portofolioUser.map((item) => (
-                      <div className="col-md-12 border-bottom mb-4">
+                    {portofolioUser.map((item, index) => (
+                      <div className="col-md-12 border-bottom mb-4" key={index}>
                         <div className="row mb-3">
                           <div className="col-md-4">
                             <div
@@ -555,6 +560,7 @@ const EditProfile = () => {
                                     ? noimage
                                     : item.por_photo
                                 }
+                                alt="photo"
                                 className="card-img-top"
                                 height={200}
                                 width={500}

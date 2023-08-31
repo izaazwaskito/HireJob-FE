@@ -13,6 +13,7 @@ const SkillShow = ({ wrk_id }) => {
       .get(`${process.env.NEXT_PUBLIC_API}/skill/profile/${wrk_id}`)
       .then((response) => setData(response.data.data))
       .catch((error) => console.log(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
