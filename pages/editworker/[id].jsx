@@ -23,6 +23,7 @@ import ModalEditPorto from "../../components/ModalPortofolio/ModalEditPorto";
 import ModalDeletePorto from "../../components/ModalPortofolio/ModalDeletePorto";
 import {
   createSkill,
+  deleteSkill,
   getSkillUser,
 } from "../../configs/redux/actions/skillActions";
 import {
@@ -143,6 +144,10 @@ const EditProfile = () => {
       ...skill,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleDelete = (skill_id) => {
+    dispatch(deleteSkill(skill_id));
   };
 
   return (
@@ -318,7 +323,11 @@ const EditProfile = () => {
                   </div>
                   <div className="col-md-12 mt-3 d-flex flex-wrap">
                     {skillUser.map((item) => (
-                      <div className={`ps-2 pe-2  mb-2 ${styles.flexBox}`}>
+                      <div
+                        className={`ps-2 pe-2  mb-2 ${styles.flexBox}`}
+                        onClick={() => handleDelete(item.skill_id)}
+                        style={{ cursor: "pointer" }}
+                      >
                         {item.skill_name}
                       </div>
                     ))}

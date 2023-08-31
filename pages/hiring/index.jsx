@@ -19,11 +19,11 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(2);
 
   useEffect(() => {
     axios
-      .get(`h${process.env.NEXT_PUBLIC_API}/worker/profile`)
+      .get(`${process.env.NEXT_PUBLIC_API}/worker/profile`)
       .then((response) => setData(response.data.data))
       .catch((error) => console.log(error));
   }, []);

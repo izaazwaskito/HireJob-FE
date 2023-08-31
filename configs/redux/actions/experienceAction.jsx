@@ -32,17 +32,16 @@ export const createExperience = (data) => async (dispatch) => {
       data
     );
     const result = experiences.data.data;
-
-    dispatch({ type: "CREATE_EXPERIENCE", payload: result });
-    if (experiences.statusText === "Created") {
+    if (experiences.data.status === "success") {
       Toast.fire({
         icon: "success",
-        title: "Update Success",
+        title: "Create Success",
       });
       setTimeout(function () {
         window.location.reload();
       }, 2000);
     }
+    dispatch({ type: "CREATE_EXPERIENCE", payload: result });
   } catch (err) {
     console.log(err.message);
   }
@@ -69,9 +68,17 @@ export const deleteExperience = (exp_id, setShow) => async (dispatch) => {
       `${process.env.NEXT_PUBLIC_API}/experience/${exp_id}`
     );
     const result = experiences.data.data;
+    if (experiences.data.status === "success") {
+      Toast.fire({
+        icon: "success",
+        title: "Delete success",
+      });
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
+    }
     setShow(false);
     dispatch({ type: "DELETE_EXPERIENCE", payload: result });
-    window.location.reload();
   } catch (err) {
     console.log(err.message);
   }

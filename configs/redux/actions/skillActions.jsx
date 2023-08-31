@@ -30,31 +30,38 @@ export const createSkill = (data) => async (dispatch) => {
       `${process.env.NEXT_PUBLIC_API}/skill`,
       data
     );
+    const result = skills.data.data;
     if (skills.data.message === "Skill Already") {
       Toast.fire({
         icon: "error",
         title: "Skill Already",
       });
       setTimeout(function () {
-        window.location.reload(1);
+        window.location.reload();
       }, 2000);
     }
-    const result = skills.data.data;
     dispatch({ type: "CREATE_SKILL", payload: result });
   } catch (err) {
     console.log(err.message);
   }
 };
 
-export const deleteSkill = (exp_id, setShow) => async (dispatch) => {
+export const deleteSkill = (skill_id) => async (dispatch) => {
   try {
     const skills = await axios.delete(
-      `${process.env.NEXT_PUBLIC_API}/skill/${exp_id}`
+      `${process.env.NEXT_PUBLIC_API}/skill/${skill_id}`
     );
     const result = skills.data.data;
-    setShow(false);
+    if (skills.data.status === "success") {
+      Toast.fire({
+        icon: "success",
+        title: "Delete success",
+      });
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
+    }
     dispatch({ type: "DELETE_SKILL", payload: result });
-    window.location.reload();
   } catch (err) {
     console.log(err.message);
   }

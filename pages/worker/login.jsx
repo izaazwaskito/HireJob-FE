@@ -60,19 +60,13 @@ const login = () => {
         localStorage.setItem("wrk_id", res.data.data.wrk_id);
         navigate("/");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="container" style={{ maxWidth: 1766 }}>
-      <Head>
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-          crossOrigin="anonymous"
-        />
-      </Head>
       <div className="row flex-column-reverse flex-md-row">
         <div className="col-md-6 height-side" style={{ display: "flex" }}>
           <div

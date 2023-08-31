@@ -44,22 +44,20 @@ const register = () => {
         .post(`${process.env.NEXT_PUBLIC_API}/worker/register`, data)
         .then((res) => {
           console.log(res.statusText);
-          if (res.statusText === "Created") {
+          if (res.status === 201) {
             Toast.fire({
-              title: "Account Created Success",
               icon: "success",
+              title: "Regiter successfully",
             }).then((result) => {
               router.push("/worker/login");
             });
-          } else if (res.statusText === "OK") {
+          } else if (res.status === 200) {
             Toast.fire({
-              title: "Account Created Error",
               icon: "error",
-            }).then((err) => {
+              title: res.data.message,
+            }).then((result) => {
               router.push("/worker/register");
             });
-          } else {
-            console.log("error");
           }
         });
     } catch (err) {}

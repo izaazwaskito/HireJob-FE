@@ -1,4 +1,17 @@
 import axios from "axios";
+import Swal from "sweetalert2";
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  },
+});
 
 export const getPortofolioUser = (isLogin) => async (dispatch) => {
   try {
@@ -68,6 +81,15 @@ export const deletePortofolio = (por_id, setShow) => async (dispatch) => {
       `${process.env.NEXT_PUBLIC_API}/portofolio/${por_id}`
     );
     const result = portofolios.data.data;
+    if (portofolios.data.status === "success") {
+      Toast.fire({
+        icon: "success",
+        title: "Delete success",
+      });
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
+    }
     setShow(false);
     dispatch({ type: "DELETE_PORTOFOLIO", payload: result });
     window.location.reload();
