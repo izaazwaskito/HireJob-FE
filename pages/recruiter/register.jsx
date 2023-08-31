@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import Link from "next/link";
 
-const register = () => {
+const Register = () => {
   const router = useRouter();
   const [data, setData] = useState({
     rec_name: "",
@@ -96,9 +96,10 @@ const register = () => {
                 objectFit: "cover",
                 opacity: "0.2",
               }}
+              alt="photo"
             />
             <div style={{ position: "absolute", top: 44, left: 44 }}>
-              <Image src={logo} style={{ width: 86, height: 24 }} />
+              <Image src={logo} style={{ width: 86, height: 24 }} alt="logo" />
             </div>
             <div
               style={{
@@ -282,4 +283,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;

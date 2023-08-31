@@ -22,7 +22,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
-const landingpage = () => {
+const LandingPage = () => {
   const [login, setLogin] = useState();
   useEffect(() => {
     // Perform localStorage action
@@ -136,7 +136,7 @@ const landingpage = () => {
                       </div>
                       <div className="row">
                         <div className="col-md-1 col-1 pe-0">
-                          <Image src={tick1} />
+                          <Image src={tick1} alt="photo" />
                         </div>
                         <div className="col-md-11 col-11 ">
                           <p>Lorem ipsum dolor sit amet.</p>
@@ -169,7 +169,7 @@ const landingpage = () => {
                         <div className="col-md-6 col-6">
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>Java</p>
@@ -177,7 +177,7 @@ const landingpage = () => {
                           </div>
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>Kotlin</p>
@@ -185,7 +185,7 @@ const landingpage = () => {
                           </div>
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>PHP</p>
@@ -193,7 +193,7 @@ const landingpage = () => {
                           </div>
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>JavaScript</p>
@@ -203,7 +203,7 @@ const landingpage = () => {
                         <div className="col-md-6 col-6">
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>Golang</p>
@@ -211,7 +211,7 @@ const landingpage = () => {
                           </div>
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>C++</p>
@@ -219,7 +219,7 @@ const landingpage = () => {
                           </div>
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>Ruby</p>
@@ -227,7 +227,7 @@ const landingpage = () => {
                           </div>
                           <div className="row">
                             <div className="col-md-1 col-2 pe-0">
-                              <Image src={tick13} />
+                              <Image src={tick13} alt="photo" />
                             </div>
                             <div className="col-md-11 col-10 ">
                               <p>10+ Bahasa lainnya</p>
@@ -850,4 +850,4 @@ const landingpage = () => {
   }
 };
 
-export default landingpage;
+export default LandingPage;

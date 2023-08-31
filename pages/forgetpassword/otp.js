@@ -1,40 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import authphoto from "../../public/authphoto.jpg";
 import logo from "../../public/PeworldPutih.png";
 import "../../styles/Home.module.css";
-import Swal from "sweetalert2";
-import { useRouter } from "next/router";
+
 import axios from "axios";
 import Link from "next/link";
 
 const otp = () => {
-  const router = useRouter();
-  const [data, setData] = useState({
-    wrk_email: "",
-    wrk_confirmpassword: "",
-  });
-
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-    },
-  });
-
   const handleLogin = (e) => {
     e.preventDefault();
     axios
@@ -137,9 +111,6 @@ const otp = () => {
                 aria-describedby="inputGroup-sizing-lg"
                 placeholder="Masukan alamat email"
                 style={{ height: 50 }}
-                name="wrk_email"
-                value={data.wrk_email}
-                onChange={handleChange}
               />
               <p
                 className="mt-3 mb-0"
@@ -153,9 +124,6 @@ const otp = () => {
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-lg"
                 placeholder="Masukan OTP"
-                name="wrk_confirmpassword"
-                value={data.wrk_confirmpassword}
-                onChange={handleChange}
                 style={{ height: 50 }}
               />
             </div>

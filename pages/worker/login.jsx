@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 
-const login = () => {
+const Login = () => {
   const router = useRouter();
   const [data, setData] = useState({
     wrk_email: "",
@@ -86,9 +86,10 @@ const login = () => {
                 objectFit: "cover",
                 opacity: "0.2",
               }}
+              alt="photo"
             />
             <div style={{ position: "absolute", top: 44, left: 44 }}>
-              <Image src={logo} style={{ width: 86, height: 24 }} />
+              <Image src={logo} style={{ width: 86, height: 24 }} alt="logo" />
             </div>
             <div
               style={{
@@ -193,4 +194,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

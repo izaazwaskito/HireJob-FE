@@ -104,7 +104,7 @@ const Index = () => {
                       : -1;
                   })
                   .map((item) => (
-                    <div className="col-md-12  border-bottom">
+                    <div className="col-md-12  border-bottom" key={item.wrk_id}>
                       <div className="row mt-4 mb-3">
                         <div className="col-md-2 col-12  d-flex">
                           <div
@@ -123,6 +123,7 @@ const Index = () => {
                                 borderRadius: "50%",
                                 objectFit: "cover",
                               }}
+                              alt="photo"
                             />
                           </div>
                         </div>
