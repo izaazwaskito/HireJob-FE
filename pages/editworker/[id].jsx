@@ -594,7 +594,7 @@ const EditProfile = () => {
                               <input
                                 type="hidden"
                                 name="wrk_id"
-                                value={(data.wrk_id = login)}
+                                value={data.wrk_id === login}
                               />
                             </div>
                           </div>
@@ -737,7 +737,7 @@ const EditProfile = () => {
                             <input
                               type="hidden"
                               name="wrk_id"
-                              value={(porto.wrk_id = login)}
+                              value={porto.wrk_id === login}
                             />
                           </div>
                         </div>

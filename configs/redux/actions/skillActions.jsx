@@ -24,13 +24,13 @@ export const getSkillUser = (isLogin) => async (dispatch) => {
   }
 };
 
-export const createSkill = (data) => async (dispatch) => {
+export const createSkill = (skill) => async (dispatch) => {
   try {
     const skills = await axios.post(
       `${process.env.NEXT_PUBLIC_API}/skill`,
-      data
+      skill
     );
-    const result = skills.data.data;
+
     if (skills.data.message === "Skill Already") {
       Toast.fire({
         icon: "error",
@@ -40,6 +40,7 @@ export const createSkill = (data) => async (dispatch) => {
         window.location.reload();
       }, 2000);
     }
+    const result = skills.data.data;
     dispatch({ type: "CREATE_SKILL", payload: result });
   } catch (err) {
     console.log(err.message);
