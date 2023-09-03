@@ -19,7 +19,7 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(2);
+  const [postsPerPage] = useState(5);
 
   useEffect(() => {
     axios
@@ -136,10 +136,10 @@ const Index = () => {
                           <p className="mb-1" style={{ color: "#9EA0A5" }}>
                             {item.wrk_desc}
                           </p>
-                          <p className="mb-3" style={{ color: "#9EA0A5" }}>
+                          {/* <p className="mb-3" style={{ color: "#9EA0A5" }}>
                             {item.wrk_email}
-                          </p>
-                          {/* <SkillShow wrk_id={item.wrk_id} /> */}
+                          </p> */}
+                          <SkillShow wrk_id={item.wrk_id} key={item.wrk_id} />
                         </div>
                         <div className="col-md-2 col-12 mt-4">
                           <Link
