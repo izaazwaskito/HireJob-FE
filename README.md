@@ -101,17 +101,16 @@ NEXT_PUBLIC_API = [BACKEND_URL]
   
   <tr>
     <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/3b975bb0-1767-4559-905f-f2cae640b691"  border="0" border="0" alt="1" /></td>
-    <td> <img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/16dc8814-0975-4e8e-9c2c-8dfecc10a1fa
-    " \ border="0"  border="0"  border="0"  alt="2" /></td>
+    <td> <img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/16dc8814-0975-4e8e-9c2c-8dfecc10a1fa" \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
     <td>Landing Page</td>
     <td>Worker Profile</td>
   </tr>
 
-  <tr>
-    <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/24ca14fb-204c-4e66-aad2-9b31b901d8f5"  border="0" border="0" alt="1" /></td
-    <td> <img width="350px" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147855969381011507/Web_capture_3-9-2023_182938_hire-job-fe-lyart.vercel.app.jpeg" \ border="0"  border="0"  border="0"  alt="2" /></td>
+   <tr>
+    <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/24ca14fb-204c-4e66-aad2-9b31b901d8f5"  border="0" border="0" alt="1" /></td>
+    <td><img width="350px" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147855969381011507/Web_capture_3-9-2023_182938_hire-job-fe-lyart.vercel.app.jpeg"  border="0" border="0" alt="1" /></td>
   </tr>
    <tr>
     <td>Recruiter Profile</td>
