@@ -36,6 +36,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import Moment from "react-moment";
 import ModalEditPhotoWorker from "../../components/ModalWorker/ModalEditPhotoWorker";
 import Swal from "sweetalert2";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const EditProfile = () => {
   const Toast = Swal.mixin({
     toast: true,
@@ -85,9 +88,12 @@ const EditProfile = () => {
   //WORKER
   const { workerUser } = useSelector((state) => state.worker);
   useEffect(() => {
+    isLoading(true);
     if (router.isReady) {
       const isLogin = localStorage.getItem("wrk_id");
-      dispatch(getWorkerUser(isLogin));
+      dispatch(getWorkerUser(isLogin)).then((res) => {
+        isLoading(false);
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
@@ -154,6 +160,8 @@ const EditProfile = () => {
     dispatch(deleteSkill(skill_id));
   };
 
+  const [loading, isLoading] = useState(false);
+
   return (
     <>
       <header>
@@ -175,101 +183,127 @@ const EditProfile = () => {
                   borderRadius: "8px",
                 }}
               >
-                {workerUser.map((item) => (
-                  <div key={item.wrk_id}>
-                    <div className="col-md-12 d-flex">
-                      <Image
-                        src={
-                          item.wrk_photo == "null" || item.wrk_photo == null
-                            ? defaultprofile
-                            : item.wrk_photo
-                        }
-                        width={150}
-                        height={150}
-                        quality={100}
-                        className="mt-3"
-                        style={{
-                          margin: "auto",
-                          borderRadius: "50%",
-                          objectFit: "cover",
-                        }}
-                        alt="photo"
-                      />
-                    </div>
-                    <div className="col-md-12 d-flex">
-                      <ModalEditPhotoWorker wrk_id={item.wrk_id} />
-                    </div>
+                {loading ? (
+                  <div className="d-flex">
+                    <Skeleton
+                      count={1}
+                      circle
+                      width={150}
+                      height={150}
+                      style={{ marginLeft: 107 }}
+                      className="mt-3"
+                    />
                   </div>
-                ))}
-                <div className="col-md-12 mt-4">
-                  {workerUser.map((item, index) => (
-                    <div key={index}>
-                      <p
-                        className="fw-semibold mb-1"
-                        style={{ fontSize: "22px" }}
-                      >
-                        {item.wrk_name}
-                      </p>
-                      <p className="mb-2" style={{ fontSize: "16px" }}>
-                        {item.wrk_jobdesk}
-                      </p>
-                      <p
-                        className="mb-2"
-                        style={{ fontSize: "14px", color: "#9EA0A5" }}
-                      >
-                        {item.wrk_dom}
-                      </p>
-                      <p
-                        className="mb-2"
-                        style={{ fontSize: "14px", color: "#9EA0A5" }}
-                      >
-                        {item.wrk_desc}
-                      </p>
-                    </div>
-                  ))}
-                  <div className="col-md-12 mt-5 ">
-                    <button
-                      className="btn container-fluid fw-semibold"
-                      style={{
-                        border: "1px solid #5E50A1",
-                        color: "#FFF",
-                        height: "50px",
-                        backgroundColor: "#5E50A1",
-                        borderRadius: "4px",
-                        margin: "auto",
-                      }}
-                      onClick={(e) => {
-                        Toast.fire({
-                          title: "Saved Account Success",
-                          icon: "success",
-                        });
-                      }}
-                    >
-                      Simpan
-                    </button>
+                ) : (
+                  <div>
+                    {workerUser.map((item) => (
+                      <div key={item.wrk_id}>
+                        <div className="col-md-12 d-flex">
+                          <Image
+                            src={
+                              item.wrk_photo == "null" || item.wrk_photo == null
+                                ? defaultprofile
+                                : item.wrk_photo
+                            }
+                            width={150}
+                            height={150}
+                            quality={100}
+                            className="mt-3"
+                            style={{
+                              margin: "auto",
+                              borderRadius: "50%",
+                              objectFit: "cover",
+                            }}
+                            alt="photo"
+                          />
+                        </div>
+                        <div className="col-md-12 d-flex">
+                          <ModalEditPhotoWorker wrk_id={item.wrk_id} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-                    <button
-                      className="btn container-fluid fw-semibold mt-3"
-                      style={{
-                        border: "1px solid #5E50A1",
-                        color: "#5E50A1",
-                        height: "50px",
-                        backgroundColor: "#FFF",
-                        borderRadius: "4px",
-                        margin: "auto",
-                      }}
-                      onClick={(e) => {
-                        Toast.fire({
-                          title: "Saved Account Cancel",
-                          icon: "error",
-                        }).then((result) => {
-                          router.push("/landingpage");
-                        });
-                      }}
-                    >
-                      Batal
-                    </button>
-                  </div>
+                <div className="col-md-12 mt-4">
+                  {loading ? (
+                    <Skeleton count={4} height={25} className="mb-2" />
+                  ) : (
+                    <div>
+                      {workerUser.map((item, index) => (
+                        <div key={index}>
+                          <p
+                            className="fw-semibold mb-1"
+                            style={{ fontSize: "22px" }}
+                          >
+                            {item.wrk_name}
+                          </p>
+                          <p className="mb-2" style={{ fontSize: "16px" }}>
+                            {item.wrk_jobdesk}
+                          </p>
+                          <p
+                            className="mb-2"
+                            style={{ fontSize: "14px", color: "#9EA0A5" }}
+                          >
+                            {item.wrk_dom}
+                          </p>
+                          <p
+                            className="mb-2"
+                            style={{ fontSize: "14px", color: "#9EA0A5" }}
+                          >
+                            {item.wrk_desc}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {loading ? (
+                    <Skeleton count={2} height={"50px"} className="mt-3" />
+                  ) : (
+                    <div className="col-md-12 mt-5 ">
+                      <button
+                        className="btn container-fluid fw-semibold"
+                        style={{
+                          border: "1px solid #5E50A1",
+                          color: "#FFF",
+                          height: "50px",
+                          backgroundColor: "#5E50A1",
+                          borderRadius: "4px",
+                          margin: "auto",
+                        }}
+                        onClick={(e) => {
+                          Toast.fire({
+                            title: "Saved Account Success",
+                            icon: "success",
+                          });
+                        }}
+                      >
+                        Simpan
+                      </button>
+
+                      <button
+                        className="btn container-fluid fw-semibold mt-3"
+                        style={{
+                          border: "1px solid #5E50A1",
+                          color: "#5E50A1",
+                          height: "50px",
+                          backgroundColor: "#FFF",
+                          borderRadius: "4px",
+                          margin: "auto",
+                        }}
+                        onClick={(e) => {
+                          Toast.fire({
+                            title: "Saved Account Cancel",
+                            icon: "error",
+                          }).then((result) => {
+                            router.push("/landingpage");
+                          });
+                        }}
+                      >
+                        Batal
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -283,36 +317,54 @@ const EditProfile = () => {
               >
                 <div className="row">
                   <div className="col-md-12 border-bottom pt-3">
-                    <p className="fw-semibold fs-4">Data diri</p>
-                  </div>
-                  {workerUser.map((item, index) => (
-                    <div className="col-md-12 mt-3" key={index}>
-                      <div>
-                        <p
-                          className="mb-0"
-                          style={{ color: "#9EA0A5", fontSize: 14 }}
-                        >
-                          Nama lengkap
-                        </p>
-                        <input
-                          type="text"
-                          className="form-control container-fluid"
-                          aria-label="Sizing example input"
-                          aria-describedby="inputGroup-sizing-lg"
-                          placeholder="Masukan nama lengkap"
-                          value={item.wrk_name}
-                          style={{ height: 50 }}
-                        />
-                      </div>
-
-                      <Form
-                        wrk_dom={item.wrk_dom}
-                        wrk_jobdesk={item.wrk_jobdesk}
-                        wrk_place={item.wrk_place}
-                        wrk_desc={item.wrk_desc}
+                    {loading ? (
+                      <Skeleton
+                        count={1}
+                        height={36}
+                        width={100}
+                        className="mb-3"
                       />
+                    ) : (
+                      <p className="fw-semibold fs-4">Data diri</p>
+                    )}
+                  </div>
+                  {loading ? (
+                    <div>
+                      <Skeleton count={4} height={60} className="mt-3" />
+                      <Skeleton count={1} height={108} className="mt-3" />
+                      <Skeleton count={1} height={50} className="mt-3" />
                     </div>
-                  ))}
+                  ) : (
+                    <div>
+                      {workerUser.map((item, index) => (
+                        <div className="col-md-12 mt-3" key={index}>
+                          <div>
+                            <p
+                              className="mb-0"
+                              style={{ color: "#9EA0A5", fontSize: 14 }}
+                            >
+                              Nama lengkap
+                            </p>
+                            <input
+                              type="text"
+                              className="form-control container-fluid"
+                              aria-label="Sizing example input"
+                              aria-describedby="inputGroup-sizing-lg"
+                              placeholder="Masukan nama lengkap"
+                              value={item.wrk_name}
+                              style={{ height: 50 }}
+                            />
+                          </div>
+                          <Form
+                            wrk_dom={item.wrk_dom}
+                            wrk_jobdesk={item.wrk_jobdesk}
+                            wrk_place={item.wrk_place}
+                            wrk_desc={item.wrk_desc}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
               <div
@@ -324,20 +376,34 @@ const EditProfile = () => {
               >
                 <div className="row">
                   <div className="col-md-12 border-bottom pt-3">
-                    <p className="fw-semibold fs-4">Skill</p>
+                    {loading ? (
+                      <Skeleton
+                        count={1}
+                        height={36}
+                        width={70}
+                        className="mb-3"
+                      />
+                    ) : (
+                      <p className="fw-semibold fs-4">Skill</p>
+                    )}
                   </div>
-                  <div className="col-md-12 mt-3 d-flex flex-wrap">
-                    {skillUser.map((item, index) => (
-                      <div
-                        className={`ps-2 pe-2  mb-2 ${styles.flexBox}`}
-                        onClick={() => handleDelete(item.skill_id)}
-                        style={{ cursor: "pointer" }}
-                        key={index}
-                      >
-                        {item.skill_name}
-                      </div>
-                    ))}
-                  </div>
+                  {loading ? (
+                    <Skeleton count={1} height={50} className="mt-3" />
+                  ) : (
+                    <div className="col-md-12 mt-3 d-flex flex-wrap">
+                      {skillUser.map((item, index) => (
+                        <div
+                          className={`ps-2 pe-2  mb-2 ${styles.flexBox}`}
+                          onClick={() => handleDelete(item.skill_id)}
+                          style={{ cursor: "pointer" }}
+                          key={index}
+                        >
+                          {item.skill_name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   <form onSubmit={handleCreateSkill}>
                     <div className="col-md-12 mt-3 input-group">
                       <input
