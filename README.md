@@ -2,13 +2,13 @@
 <div align="center">
   <img height="150" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147830303457550416/Screenshot_120-removebg-preview.png" alt="Hiring App-logo" border="0"/>
 </div>
-  <h3 align="center">Hiring App App</h3>
+  <h3 align="center">Hiring App</h3>
   <p align="center">
-    <a href="https://github.com/mhmdiamd/ui-hiring-app"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/izaazwaskito/HireJob-FE"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://yugawe.vercel.app/">View Demo</a>
+    <a href="https://hire-job-fe-lyart.vercel.app/">View Demo</a>
     <br />
-    <a href="https://restapi-hiring-app-pijarcamp-production.up.railway.app/api/v1/">Api Demo</a>
+    <a href="https://hirejob-be.vercel.app/">Api Demo</a>
   </p>
 </p>
 
@@ -101,7 +101,8 @@ NEXT_PUBLIC_API = [BACKEND_URL]
   
   <tr>
     <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/3b975bb0-1767-4559-905f-f2cae640b691"  border="0" border="0" alt="1" /></td>
-    <td> <img width="350px" src="[./documentation/worker-profile.png](https://github.com/izaazwaskito/HireJob-FE/assets/116268166/16dc8814-0975-4e8e-9c2c-8dfecc10a1fa)" \ border="0"  border="0"  border="0"  alt="2" /></td>
+    <td> <img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/16dc8814-0975-4e8e-9c2c-8dfecc10a1fa
+    " \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
     <td>Landing Page</td>
@@ -109,30 +110,21 @@ NEXT_PUBLIC_API = [BACKEND_URL]
   </tr>
 
   <tr>
-    <td><img width="350px" src=">https://github.com/izaazwaskito/HireJob-FE/assets/116268166/24ca14fb-204c-4e66-aad2-9b31b901d8f5"  border="0" border="0" alt="1" /></td
-    <td> <img width="350px" src="./documentation/worker-portofolio.png" \ border="0"  border="0"  border="0"  alt="2" /></td>
+    <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/24ca14fb-204c-4e66-aad2-9b31b901d8f5"  border="0" border="0" alt="1" /></td
+    <td> <img width="350px" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147855969381011507/Web_capture_3-9-2023_182938_hire-job-fe-lyart.vercel.app.jpeg" \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
     <td>Recruiter Profile</td>
-    <td>Worker portofolio</td>
+    <td>Hiring</td>
   </tr>
 
   <tr>
-    <td><img width="350px" src="./documentation/search-result.png"  border="0" border="0" alt="1" /></td>
-    <td><img width="350px" src="./documentation/update-recruiter.png"  border="0" border="0" alt="1" /></td>
+    <td><img width="350px" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147856291935551528/Web_capture_3-9-2023_183045_hire-job-fe-lyart.vercel.app.jpeg"  border="0" border="0" alt="1" /></td>
+    <td><img width="350px" src="https://cdn.discordapp.com/attachments/1118733891738554480/1147856437951877250/Web_capture_3-9-2023_183135_hire-job-fe-lyart.vercel.app.jpeg"  border="0" border="0" alt="1" /></td>
   </tr>
    <tr>
-    <td>Worker List</td>
-    <td>Update Recruiter</td>
-  </tr>
-
-  <tr>
-    <td><img width="350px" src="./documentation/profile-recruiter.png"  border="0" border="0" alt="1" /></td>
-    <td><img width="350px" src="./documentation/email-activation.png"  border="0" border="0" alt="1" /></td>
-  </tr>
-   <tr>
-    <td>Worker List</td>
-    <td>Email Activation</td>
+    <td>Hire Profile</td>
+    <td>Hire Message</td>
   </tr>
 
 </table>
@@ -150,10 +142,10 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Related Project
 
-:rocket: [`Backend Hiring App`](https://github.com/mhmdiamd/restapi-hiring-app-pijarcamp)
+:rocket: [`Backend Hiring App`](https://github.com/izaazwaskito/HireJob-BE)
 
-:rocket: [`Frontend Hiring App`](https://github.com/mhmdiamd/ui-hiring-app)
+:rocket: [`Frontend Hiring App`](https://github.com/izaazwaskito/HireJob-FE)
 
-:rocket: [`Demo Hiring App`](https://yugawe.vercel.app/)
+:rocket: [`Demo Hiring App`](https://hire-job-fe-lyart.vercel.app/)
 
-Project Link: [https://github.com/mhmdiamd/ui-hiring-app](https://github.com/mhmdiamd/ui-hiring-app)
+Project Link: [https://github.com/izaazwaskito/HireJob-FE](https://github.com/izaazwaskito/HireJob-FE)
