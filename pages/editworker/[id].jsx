@@ -419,7 +419,11 @@ const EditProfile = () => {
                           onChange={handleChangeSkill}
                           style={{ height: 50 }}
                         />
-                        <input type="hidden" name="wrk_id" value={login} />
+                        <input
+                          type="hidden"
+                          name="wrk_id"
+                          value={skill.wrk_id === login}
+                        />
                         <button
                           type="submit"
                           className="btn btn-warning text-light fw-semibold"
