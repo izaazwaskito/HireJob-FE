@@ -48,6 +48,12 @@ const Login = () => {
           }).then((result) => {
             router.push("/landingpage");
           });
+        } else if (res.data.message === "recruiter is unverify") {
+          Toast.fire({
+            title:
+              "Welcome to Peworld! To activate your account, click the verification link sent to your email address.",
+            icon: "error",
+          });
         } else if (res.status === 200) {
           Toast.fire({
             icon: "error",

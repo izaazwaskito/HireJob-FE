@@ -403,33 +403,36 @@ const EditProfile = () => {
                       ))}
                     </div>
                   )}
-
-                  <form onSubmit={handleCreateSkill}>
-                    <div className="col-md-12 mt-3 input-group">
-                      <input
-                        type="text"
-                        className="form-control container-fluid w-75"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                        placeholder="Javascript, Html, css"
-                        value={skill.skill_name}
-                        name="skill_name"
-                        onChange={handleChangeSkill}
-                        style={{ height: 50 }}
-                      />
-                      <input
-                        type="hidden"
-                        name="wrk_id"
-                        value={(skill.wrk_id = login)}
-                      />
-                      <button
-                        type="submit"
-                        className="btn btn-warning text-light fw-semibold"
-                      >
-                        Simpan
-                      </button>
-                    </div>
-                  </form>
+                  {loading ? (
+                    <Skeleton count={1} height={50} className="mt-4" />
+                  ) : (
+                    <form onSubmit={handleCreateSkill}>
+                      <div className="col-md-12 mt-3 input-group">
+                        <input
+                          type="text"
+                          className="form-control container-fluid w-75"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                          placeholder="Javascript, Html, css"
+                          value={skill.skill_name}
+                          name="skill_name"
+                          onChange={handleChangeSkill}
+                          style={{ height: 50 }}
+                        />
+                        <input
+                          type="hidden"
+                          name="wrk_id"
+                          value={(skill.wrk_id = login)}
+                        />
+                        <button
+                          type="submit"
+                          className="btn btn-warning text-light fw-semibold"
+                        >
+                          Simpan
+                        </button>
+                      </div>
+                    </form>
+                  )}
                 </div>
               </div>
               <div
@@ -440,164 +443,174 @@ const EditProfile = () => {
                 }}
               >
                 <div className="row">
-                  <div className="col-md-12 border-bottom pt-3">
-                    <p className="fw-semibold fs-4">Pengalaman kerja</p>
-                  </div>
-                  <div className="col-md-12 mt-3">
-                    {experienceUser.map((item, index) => (
-                      <div
-                        className="col-md-12 border-bottom mb-4 pb-4"
-                        key={index}
-                      >
-                        <div className="row">
-                          <div className="col-md-10">
-                            <p className="m-0 fw-semibold fs-5">
-                              {item.exp_position}
-                            </p>
-                            <p className="m-0">{item.exp_compname}</p>
-                            <p className="m-0" style={{ color: "#9EA0A5" }}>
-                              <Moment format="DD MMM YYYY" withTitle>
-                                {item.exp_datefrom}
-                              </Moment>{" "}
-                              -{" "}
-                              <Moment format="DD MMM YYYY" withTitle>
-                                {item.exp_dateuntil}
-                              </Moment>{" "}
-                              <Moment from={item.exp_datefrom}>
-                                {item.exp_dateuntil}
-                              </Moment>
-                            </p>
-                            <p className="mt-1">{item.exp_desc}</p>
-                          </div>
-                          <div className="col-md-2 mt-1 ">
-                            <ModalEdit
-                              exp_id={item.exp_id}
-                              exp_position={item.exp_position}
-                              exp_compname={item.exp_compname}
-                              exp_datefrom={item.exp_datefrom}
-                              exp_dateuntil={item.exp_dateuntil}
-                              exp_desc={item.exp_desc}
-                            />
-                            <ModalDelete exp_id={item.exp_id} />
-                          </div>
-                        </div>
+                  {loading ? (
+                    <div>
+                      <Skeleton count={1} height={49} width={300} />
+                      <Skeleton count={1} height={150} className="mt-4" />
+                      <Skeleton count={4} height={49} className="mt-3" />
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="col-md-12 border-bottom pt-3">
+                        <p className="fw-semibold fs-4">Pengalaman kerja</p>
                       </div>
-                    ))}
-                    {/* {JSON.stringify(data)} */}
-                  </div>
-                  <form onSubmit={handleCreateExperience} className="mb-4">
-                    <div className="col-md-12 mt-3 border-bottom">
                       <div className="col-md-12 mt-3">
-                        <p
-                          className="mb-0"
-                          style={{ color: "#9EA0A5", fontSize: 14 }}
-                        >
-                          Posisi
-                        </p>
-                        <input
-                          type="text"
-                          className="form-control container-fluid"
-                          aria-label="Sizing example input"
-                          aria-describedby="inputGroup-sizing-lg"
-                          placeholder=""
-                          style={{ height: 50 }}
-                          name="exp_position"
-                          value={data.exp_position}
-                          onChange={handleChangeExperience}
-                        />
+                        {experienceUser.map((item, index) => (
+                          <div
+                            className="col-md-12 border-bottom mb-4 pb-4"
+                            key={index}
+                          >
+                            <div className="row">
+                              <div className="col-md-10">
+                                <p className="m-0 fw-semibold fs-5">
+                                  {item.exp_position}
+                                </p>
+                                <p className="m-0">{item.exp_compname}</p>
+                                <p className="m-0" style={{ color: "#9EA0A5" }}>
+                                  <Moment format="DD MMM YYYY" withTitle>
+                                    {item.exp_datefrom}
+                                  </Moment>{" "}
+                                  -{" "}
+                                  <Moment format="DD MMM YYYY" withTitle>
+                                    {item.exp_dateuntil}
+                                  </Moment>{" "}
+                                  <Moment from={item.exp_datefrom}>
+                                    {item.exp_dateuntil}
+                                  </Moment>
+                                </p>
+                                <p className="mt-1">{item.exp_desc}</p>
+                              </div>
+                              <div className="col-md-2 mt-1 ">
+                                <ModalEdit
+                                  exp_id={item.exp_id}
+                                  exp_position={item.exp_position}
+                                  exp_compname={item.exp_compname}
+                                  exp_datefrom={item.exp_datefrom}
+                                  exp_dateuntil={item.exp_dateuntil}
+                                  exp_desc={item.exp_desc}
+                                />
+                                <ModalDelete exp_id={item.exp_id} />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                        {/* {JSON.stringify(data)} */}
                       </div>
-                      <div className="row">
-                        <div className="col-md-6 mt-3">
-                          <p
-                            className="mb-0"
-                            style={{ color: "#9EA0A5", fontSize: 14 }}
-                          >
-                            Nama perusahaan
-                          </p>
-                          <input
-                            type="text"
-                            className="form-control container-fluid"
-                            aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg"
-                            placeholder=""
-                            name="exp_compname"
-                            value={data.exp_compname}
-                            onChange={handleChangeExperience}
+                      <form onSubmit={handleCreateExperience} className="mb-4">
+                        <div className="col-md-12 mt-3 border-bottom">
+                          <div className="col-md-12 mt-3">
+                            <p
+                              className="mb-0"
+                              style={{ color: "#9EA0A5", fontSize: 14 }}
+                            >
+                              Posisi
+                            </p>
+                            <input
+                              type="text"
+                              className="form-control container-fluid"
+                              aria-label="Sizing example input"
+                              aria-describedby="inputGroup-sizing-lg"
+                              placeholder=""
+                              style={{ height: 50 }}
+                              name="exp_position"
+                              value={data.exp_position}
+                              onChange={handleChangeExperience}
+                            />
+                          </div>
+                          <div className="row">
+                            <div className="col-md-6 mt-3">
+                              <p
+                                className="mb-0"
+                                style={{ color: "#9EA0A5", fontSize: 14 }}
+                              >
+                                Nama perusahaan
+                              </p>
+                              <input
+                                type="text"
+                                className="form-control container-fluid"
+                                aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg"
+                                placeholder=""
+                                name="exp_compname"
+                                value={data.exp_compname}
+                                onChange={handleChangeExperience}
+                                style={{ height: 50 }}
+                              />
+                            </div>
+                            <div className="col-md-3 mt-3">
+                              <p
+                                className="mb-0"
+                                style={{ color: "#9EA0A5", fontSize: 14 }}
+                              >
+                                Dari Bulan/tahun
+                              </p>
+                              <input
+                                type="date"
+                                className="form-control container-fluid"
+                                aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg"
+                                placeholder=""
+                                name="exp_datefrom"
+                                value={data.exp_datefrom}
+                                onChange={handleChangeExperience}
+                                style={{ height: 50 }}
+                              />
+                            </div>
+                            <div className="col-md-3 mt-3">
+                              <p
+                                className="mb-0"
+                                style={{ color: "#9EA0A5", fontSize: 14 }}
+                              >
+                                Sampai Bulan/tahun
+                              </p>
+                              <input
+                                type="date"
+                                className="form-control container-fluid"
+                                aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-lg"
+                                placeholder=""
+                                name="exp_dateuntil"
+                                value={data.exp_dateuntil}
+                                onChange={handleChangeExperience}
+                                style={{ height: 50 }}
+                              />
+                            </div>
+                            <div className="col-md-12 mb-3">
+                              <p
+                                className="mb-0 mt-3"
+                                style={{ color: "#9EA0A5", fontSize: 14 }}
+                              >
+                                Deskripsi singkat
+                              </p>
+                              <textarea
+                                class="form-control"
+                                id="exampleFormControlTextarea1"
+                                rows="4"
+                                placeholder=""
+                                name="exp_desc"
+                                value={data.exp_desc}
+                                onChange={handleChangeExperience}
+                              ></textarea>
+                              <input
+                                type="hidden"
+                                name="wrk_id"
+                                value={(data.wrk_id = login)}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-md-12 mt-3">
+                          <button
+                            type="submit"
+                            className="btn btn-outline-warning fw-semibold container-fluid"
                             style={{ height: 50 }}
-                          />
-                        </div>
-                        <div className="col-md-3 mt-3">
-                          <p
-                            className="mb-0"
-                            style={{ color: "#9EA0A5", fontSize: 14 }}
                           >
-                            Dari Bulan/tahun
-                          </p>
-                          <input
-                            type="date"
-                            className="form-control container-fluid"
-                            aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg"
-                            placeholder=""
-                            name="exp_datefrom"
-                            value={data.exp_datefrom}
-                            onChange={handleChangeExperience}
-                            style={{ height: 50 }}
-                          />
+                            Tambah pengalaman kerja
+                          </button>
                         </div>
-                        <div className="col-md-3 mt-3">
-                          <p
-                            className="mb-0"
-                            style={{ color: "#9EA0A5", fontSize: 14 }}
-                          >
-                            Sampai Bulan/tahun
-                          </p>
-                          <input
-                            type="date"
-                            className="form-control container-fluid"
-                            aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg"
-                            placeholder=""
-                            name="exp_dateuntil"
-                            value={data.exp_dateuntil}
-                            onChange={handleChangeExperience}
-                            style={{ height: 50 }}
-                          />
-                        </div>
-                        <div className="col-md-12 mb-3">
-                          <p
-                            className="mb-0 mt-3"
-                            style={{ color: "#9EA0A5", fontSize: 14 }}
-                          >
-                            Deskripsi singkat
-                          </p>
-                          <textarea
-                            class="form-control"
-                            id="exampleFormControlTextarea1"
-                            rows="4"
-                            placeholder=""
-                            name="exp_desc"
-                            value={data.exp_desc}
-                            onChange={handleChangeExperience}
-                          ></textarea>
-                          <input
-                            type="hidden"
-                            name="wrk_id"
-                            value={(data.wrk_id = login)}
-                          />
-                        </div>
-                      </div>
+                      </form>
                     </div>
-                    <div className="col-md-12 mt-3">
-                      <button
-                        type="submit"
-                        className="btn btn-outline-warning fw-semibold container-fluid"
-                        style={{ height: 50 }}
-                      >
-                        Tambah pengalaman kerja
-                      </button>
-                    </div>
-                  </form>
+                  )}
                 </div>
               </div>
               <div
@@ -608,125 +621,138 @@ const EditProfile = () => {
                 }}
               >
                 <div className="row">
-                  <div className="col-md-12 border-bottom pt-3">
-                    <p className="fw-semibold fs-4">Portofolio</p>
-                  </div>
-                  <div className="col-md-12 mt-3">
-                    {portofolioUser.map((item, index) => (
-                      <div className="col-md-12 border-bottom mb-4" key={index}>
-                        <div className="row mb-3">
-                          <div className="col-md-4">
-                            <div
-                              className="card p-0"
-                              style={{ width: "18rem", border: "none" }}
-                            >
-                              <Image
-                                src={
-                                  item.por_photo == "null"
-                                    ? noimage
-                                    : item.por_photo
-                                }
-                                alt="photo"
-                                className="card-img-top"
-                                height={200}
-                                width={500}
-                                quality={100}
-                                style={{
-                                  objectFit: "cover",
-                                  borderRadius: "4px",
-                                }}
-                              />
+                  {loading ? (
+                    <div>
+                      <Skeleton count={1} height={49} width={160} />
+                      <Skeleton count={1} height={200} className="mt-4" />
+                      <Skeleton count={4} height={49} className="mt-3" />
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="col-md-12 border-bottom pt-3">
+                        <p className="fw-semibold fs-4">Portofolio</p>
+                      </div>
+                      <div className="col-md-12 mt-3">
+                        {portofolioUser.map((item, index) => (
+                          <div
+                            className="col-md-12 border-bottom mb-4"
+                            key={index}
+                          >
+                            <div className="row mb-3">
+                              <div className="col-md-4">
+                                <div
+                                  className="card p-0"
+                                  style={{ width: "18rem", border: "none" }}
+                                >
+                                  <Image
+                                    src={
+                                      item.por_photo == "null"
+                                        ? noimage
+                                        : item.por_photo
+                                    }
+                                    alt="photo"
+                                    className="card-img-top"
+                                    height={200}
+                                    width={500}
+                                    quality={100}
+                                    style={{
+                                      objectFit: "cover",
+                                      borderRadius: "4px",
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-md-6">
+                                <p>{item.por_name}</p>
+                                <p>{item.por_repository}</p>
+                              </div>
+                              <div className="col-md-2 mt-1 ">
+                                <ModalEditPorto
+                                  por_id={item.por_id}
+                                  por_name={item.por_name}
+                                  por_repository={item.por_repository}
+                                  por_photo={item.por_photo}
+                                />
+                                <ModalDeletePorto por_id={item.por_id} />
+                              </div>
                             </div>
                           </div>
-                          <div className="col-md-6">
-                            <p>{item.por_name}</p>
-                            <p>{item.por_repository}</p>
-                          </div>
-                          <div className="col-md-2 mt-1 ">
-                            <ModalEditPorto
-                              por_id={item.por_id}
-                              por_name={item.por_name}
-                              por_repository={item.por_repository}
-                              por_photo={item.por_photo}
+                        ))}
+                      </div>
+                      <form onSubmit={handleCreatePortofolio}>
+                        <div className="col-md-12 mt-3 border-bottom">
+                          <div className="col-md-12 mt-3">
+                            <p
+                              className="mb-0"
+                              style={{ color: "#9EA0A5", fontSize: 14 }}
+                            >
+                              Nama aplikasi
+                            </p>
+                            <input
+                              type="text"
+                              className="form-control container-fluid"
+                              aria-label="Sizing example input"
+                              aria-describedby="inputGroup-sizing-lg"
+                              placeholder="Masukan nama aplikasi"
+                              name="por_name"
+                              value={porto.por_name}
+                              onChange={handleChangePortofolio}
+                              style={{ height: 50 }}
                             />
-                            <ModalDeletePorto por_id={item.por_id} />
+                          </div>
+                          <div className="col-md-12 mt-3">
+                            <p
+                              className="mb-0"
+                              style={{ color: "#9EA0A5", fontSize: 14 }}
+                            >
+                              Link repository
+                            </p>
+                            <input
+                              type="text"
+                              className="form-control container-fluid"
+                              aria-label="Sizing example input"
+                              aria-describedby="inputGroup-sizing-lg"
+                              placeholder="Masukan link repository"
+                              name="por_repository"
+                              value={porto.por_repository}
+                              onChange={handleChangePortofolio}
+                              style={{ height: 50 }}
+                            />
+                          </div>
+                          <div className="col-md-12 mt-3 mb-4">
+                            <p
+                              className="mb-0"
+                              style={{ color: "#9EA0A5", fontSize: 14 }}
+                            >
+                              Upload gambar
+                            </p>
+                            <input
+                              className="form-control"
+                              type="file"
+                              id="formFile"
+                              name="por_photo"
+                              value={porto.por_photo}
+                              onChange={handleUpload}
+                            />
+                            <input
+                              type="hidden"
+                              name="wrk_id"
+                              value={(porto.wrk_id = login)}
+                            />
                           </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                  <form onSubmit={handleCreatePortofolio}>
-                    <div className="col-md-12 mt-3 border-bottom">
-                      <div className="col-md-12 mt-3">
-                        <p
-                          className="mb-0"
-                          style={{ color: "#9EA0A5", fontSize: 14 }}
-                        >
-                          Nama aplikasi
-                        </p>
-                        <input
-                          type="text"
-                          className="form-control container-fluid"
-                          aria-label="Sizing example input"
-                          aria-describedby="inputGroup-sizing-lg"
-                          placeholder="Masukan nama aplikasi"
-                          name="por_name"
-                          value={porto.por_name}
-                          onChange={handleChangePortofolio}
-                          style={{ height: 50 }}
-                        />
-                      </div>
-                      <div className="col-md-12 mt-3">
-                        <p
-                          className="mb-0"
-                          style={{ color: "#9EA0A5", fontSize: 14 }}
-                        >
-                          Link repository
-                        </p>
-                        <input
-                          type="text"
-                          className="form-control container-fluid"
-                          aria-label="Sizing example input"
-                          aria-describedby="inputGroup-sizing-lg"
-                          placeholder="Masukan link repository"
-                          name="por_repository"
-                          value={porto.por_repository}
-                          onChange={handleChangePortofolio}
-                          style={{ height: 50 }}
-                        />
-                      </div>
-                      <div className="col-md-12 mt-3 mb-4">
-                        <p
-                          className="mb-0"
-                          style={{ color: "#9EA0A5", fontSize: 14 }}
-                        >
-                          Upload gambar
-                        </p>
-                        <input
-                          className="form-control"
-                          type="file"
-                          id="formFile"
-                          name="por_photo"
-                          value={porto.por_photo}
-                          onChange={handleUpload}
-                        />
-                        <input
-                          type="hidden"
-                          name="wrk_id"
-                          value={(porto.wrk_id = login)}
-                        />
-                      </div>
+                        <div className="col-md-12 mt-3">
+                          <button
+                            type="submit"
+                            className="btn btn-outline-warning fw-semibold container-fluid"
+                            style={{ height: 50 }}
+                          >
+                            Tambah Portofolio
+                          </button>
+                        </div>
+                      </form>
                     </div>
-                    <div className="col-md-12 mt-3">
-                      <button
-                        type="submit"
-                        className="btn btn-outline-warning fw-semibold container-fluid"
-                        style={{ height: 50 }}
-                      >
-                        Tambah Portofolio
-                      </button>
-                    </div>
-                  </form>
+                  )}
                 </div>
               </div>
             </div>

@@ -45,10 +45,10 @@ const Register = () => {
       axios
         .post(`${process.env.NEXT_PUBLIC_API}/recruiter/register`, data)
         .then((res) => {
-          console.log(res.statusText);
-          if (res.statusText === "Created") {
+          if (res.data.statusCode === 201) {
             Toast.fire({
-              title: "Account Created Success",
+              title:
+                "Congratulations! Your account has been successfully created. Please check your email for further instructions",
               icon: "success",
             }).then((result) => {
               router.push("/recruiter/login");
