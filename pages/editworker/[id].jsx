@@ -69,7 +69,7 @@ const EditProfile = () => {
 
   const [skill, setSkill] = useState({
     skill_name: "",
-    wrk_id: "",
+    wrk_id: login,
   });
   const [photo, setPhoto] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -422,7 +422,7 @@ const EditProfile = () => {
                         <input
                           type="hidden"
                           name="wrk_id"
-                          value={(skill.wrk_id = login)}
+                          value={skill.wrk_id === login}
                         />
                         <button
                           type="submit"

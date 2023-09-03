@@ -91,8 +91,8 @@ NEXT_PUBLIC_API = [BACKEND_URL]
 
 <table>
  <tr>
-    <td><img width="350px" src="./documentation/recruiter-register.png"  border="0" border="0" alt="1" /></td>
-    <td> <img width="350px" src="./documentation/register.png" \ border="0"  border="0"  border="0"  alt="2" /></td>
+    <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/01e0855f-374c-470a-9f0e-d00b46d7fbcc"  border="0" border="0" alt="1" /></td>
+    <td> <img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/92a46c1f-44ec-4744-8504-6dbfad9060d4" \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
     <td>Recruiter Register</td>
@@ -100,8 +100,8 @@ NEXT_PUBLIC_API = [BACKEND_URL]
   </tr>
   
   <tr>
-    <td><img width="350px" src="./documentation/home.png"  border="0" border="0" alt="1" /></td>
-    <td> <img width="350px" src="./documentation/worker-profile.png" \ border="0"  border="0"  border="0"  alt="2" /></td>
+    <td><img width="350px" src="https://github.com/izaazwaskito/HireJob-FE/assets/116268166/3b975bb0-1767-4559-905f-f2cae640b691"  border="0" border="0" alt="1" /></td>
+    <td> <img width="350px" src="[./documentation/worker-profile.png](https://github.com/izaazwaskito/HireJob-FE/assets/116268166/16dc8814-0975-4e8e-9c2c-8dfecc10a1fa)" \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
     <td>Landing Page</td>
@@ -109,11 +109,11 @@ NEXT_PUBLIC_API = [BACKEND_URL]
   </tr>
 
   <tr>
-    <td><img width="350px" src="./documentation/worker-experience.png"  border="0" border="0" alt="1" /></td>
+    <td><img width="350px" src=">https://github.com/izaazwaskito/HireJob-FE/assets/116268166/24ca14fb-204c-4e66-aad2-9b31b901d8f5"  border="0" border="0" alt="1" /></td
     <td> <img width="350px" src="./documentation/worker-portofolio.png" \ border="0"  border="0"  border="0"  alt="2" /></td>
   </tr>
    <tr>
-    <td>Worker experience</td>
+    <td>Recruiter Profile</td>
     <td>Worker portofolio</td>
   </tr>
 
