@@ -69,7 +69,7 @@ const EditProfile = () => {
 
   const [skill, setSkill] = useState({
     skill_name: "",
-    wrk_id: login,
+    wrk_id: "",
   });
   const [photo, setPhoto] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -419,11 +419,7 @@ const EditProfile = () => {
                           onChange={handleChangeSkill}
                           style={{ height: 50 }}
                         />
-                        <input
-                          type="hidden"
-                          name="wrk_id"
-                          value={skill.wrk_id === login}
-                        />
+                        <input type="hidden" name="wrk_id" value={login} />
                         <button
                           type="submit"
                           className="btn btn-warning text-light fw-semibold"
