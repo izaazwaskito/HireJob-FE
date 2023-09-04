@@ -162,6 +162,20 @@ const EditProfile = () => {
 
   const [loading, isLoading] = useState(false);
 
+  const [rec, setRec] = useState([]);
+  useEffect(() => {
+    if (router.isReady) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API}/hire/worker/${router.query.id}`)
+        .then((response) => {
+          setRec(response.data.data);
+        })
+        .catch((error) => console.log(error));
+      console.log(router.query);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
   return (
     <>
       <header>
@@ -753,6 +767,51 @@ const EditProfile = () => {
                       </form>
                     </div>
                   )}
+                </div>
+              </div>
+              <div
+                className="col-md-12 mt-5 container pb-3"
+                style={{
+                  backgroundColor: "#FFF",
+                  borderRadius: "8px",
+                }}
+              >
+                <div className="row">
+                  <div className="col-md-12 border-bottom pt-3">
+                    <p className="fw-semibold fs-4">Offering</p>
+                  </div>
+                  <div className="col-md-12 mt-3 d-flex flex-wrap">
+                    <div className="col-md-12">
+                      <div className="row">
+                        <div className="col-md-4">
+                          <p>Name</p>
+                        </div>
+                        <div className="col-md-3">
+                          <p>Job Desk</p>
+                        </div>
+                        <div className="col-md-5">
+                          <p>Job Description</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-12 mt-3 d-flex flex-wrap">
+                    {rec.map((item) => (
+                      <div className="col-md-12">
+                        <div className="row">
+                          <div className="col-md-4">
+                            <p>{item.rec_compname}</p>
+                          </div>
+                          <div className="col-md-3">
+                            <p>{item.hire_title}</p>
+                          </div>
+                          <div className="col-md-5">
+                            <p>{item.hire_desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -18,13 +18,16 @@ import { getExperienceUser } from "../../configs/redux/actions/experienceAction"
 import { getSkillUser } from "../../configs/redux/actions/skillActions";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Swal from "sweetalert2";
 
 const Index = () => {
   const router = useRouter();
   const [users, setUsers] = useState([]);
+  const [rec, setRec] = useState([]);
   const dispatch = useDispatch();
   const { portofolioUser } = useSelector((state) => state.portofolio);
   const { experienceUser } = useSelector((state) => state.experience);
+  const [recruiter, getRecruiter] = useState([]);
   const { skillUser } = useSelector((state) => state.skill);
 
   useEffect(() => {
@@ -42,10 +45,44 @@ const Index = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+  useEffect(() => {
+    if (router.isReady) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API}/recruiter/profile/${recruiter}`)
+        .then((response) => {
+          console.log(response.data.data[0].rec_compname);
+          setRec(response.data.data[0].rec_compname);
+        })
+        .catch((error) => console.log(error));
+      console.log(router.query);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
   useEffect(() => {
     if (router.isReady) {
       const isLogin = router.query.id;
       dispatch(getPortofolioUser(isLogin));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const setRecruiter = localStorage.getItem("rec_id");
+      getRecruiter(setRecruiter);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
@@ -66,6 +103,40 @@ const Index = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady]);
   const [loading, isLoading] = useState(false);
+
+  const [data, setData] = useState({
+    hire_title: "",
+    hire_desc: "",
+    wrk_id: "",
+    wrk_name: "",
+    wrk_email: "",
+    rec_id: "",
+    rec_compname: "",
+  });
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmitHire = (e) => {
+    e.preventDefault();
+    try {
+      axios.post(`${process.env.NEXT_PUBLIC_API}/hire`, data).then((res) => {
+        if (res.data.statusCode === 201) {
+          Toast.fire({
+            title:
+              "Congratulations! Your account has been successfully created. Please check your email for further instructions",
+            icon: "success",
+          }).then((result) => {
+            window.location.reload();
+          });
+        }
+      });
+    } catch (err) {}
+  };
   return (
     <>
       <header>
@@ -241,49 +312,88 @@ const Index = () => {
                     euismod ipsum et dui rhoncus auctor.
                   </p>
                 </div>
-                <div className="col-md-12">
-                  <p
-                    className="mb-0 mt-5"
-                    style={{ color: "#9EA0A5", fontSize: 14 }}
-                  >
-                    Job desk
-                  </p>
-                  <input
-                    type="text"
-                    className="form-control container-fluid"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-lg"
-                    placeholder="Masukan job desk"
-                    style={{ height: 50 }}
-                  />
-                  <p
-                    className="mb-0 mt-3"
-                    style={{ color: "#9EA0A5", fontSize: 14 }}
-                  >
-                    Job desk
-                  </p>
-                  <textarea
-                    class="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="4"
-                    placeholder="Tuliskan deskripsi singkat"
-                  ></textarea>
-                </div>
-                <div className="col-md-12 mt-5 ">
-                  <button
-                    className="btn container-fluid fw-semibold"
-                    style={{
-                      border: "1px solid #FBB017",
-                      color: "#FFF",
-                      height: "50px",
-                      backgroundColor: "#FBB017",
-                      borderRadius: "4px",
-                      margin: "auto",
-                    }}
-                  >
-                    Hire
-                  </button>
-                </div>
+                <form onSubmit={handleSubmitHire}>
+                  <div className="col-md-12">
+                    <p
+                      className="mb-0 mt-5"
+                      style={{ color: "#9EA0A5", fontSize: 14 }}
+                    >
+                      Job desk
+                    </p>
+                    <input
+                      type="text"
+                      className="form-control container-fluid"
+                      aria-label="Sizing example input"
+                      name="hire_title"
+                      value={data.hire_title}
+                      onChange={handleChange}
+                      aria-describedby="inputGroup-sizing-lg"
+                      placeholder="Masukan job desk"
+                      style={{ height: 50 }}
+                    />
+                    <p
+                      className="mb-0 mt-3"
+                      style={{ color: "#9EA0A5", fontSize: 14 }}
+                    >
+                      Job Description
+                    </p>
+                    <textarea
+                      class="form-control"
+                      name="hire_desc"
+                      value={data.hire_desc}
+                      onChange={handleChange}
+                      id="exampleFormControlTextarea1"
+                      rows="4"
+                      placeholder="Tuliskan deskripsi singkat"
+                    ></textarea>
+                    <input
+                      type="hidden"
+                      name="wrk_id"
+                      value={(data.wrk_id = router.query.id)}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="hidden"
+                      name="rec_id"
+                      value={(data.rec_id = recruiter)}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="hidden"
+                      name="wrk_name"
+                      value={(data.wrk_name = users.wrk_name)}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="hidden"
+                      name="wrk_email"
+                      value={(data.wrk_email = users.wrk_email)}
+                      onChange={handleChange}
+                    />
+                    <input
+                      type="hidden"
+                      name="rec_compname"
+                      value={(data.rec_compname = rec)}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-md-12 mt-5 ">
+                    <button
+                      className="btn container-fluid fw-semibold"
+                      type="submit"
+                      style={{
+                        border: "1px solid #FBB017",
+                        color: "#FFF",
+                        height: "50px",
+                        backgroundColor: "#FBB017",
+                        borderRadius: "4px",
+                        margin: "auto",
+                      }}
+                    >
+                      Hire
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
