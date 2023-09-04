@@ -279,7 +279,7 @@ const EditProfile = () => {
                   </div>
                   <div className="col-md-12 mt-3 d-flex flex-wrap">
                     {rec.map((item) => (
-                      <div className="col-md-12">
+                      <div className="col-md-12" key={item.hire_id}>
                         <div className="row">
                           <div className="col-md-4">
                             <p>{item.wrk_name}</p>
