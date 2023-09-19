@@ -49,7 +49,6 @@ This is an example of how to list things you need to use the software and how to
 - [NodeJs](https://nodejs.org/en/download/)
 - [Bootstrap Css](https://getbootstrap.com/)
 - [NextJS](https://nextjs.org/)
-- [Nodemailer](https://nodemailer.com/)
 - [Redux](https://redux.js.org/)
 
 ### Installation
