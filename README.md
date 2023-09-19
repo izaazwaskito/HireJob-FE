@@ -50,8 +50,6 @@ This is an example of how to list things you need to use the software and how to
 - [Bootstrap Css](https://getbootstrap.com/)
 - [NextJS](https://nextjs.org/)
 - [Redux](https://redux.js.org/)
-- [Nodemailer](https://nodemailer.com/)
-- [Cloudinary](https://cloudinary.com/)
 
 ### Installation
 
